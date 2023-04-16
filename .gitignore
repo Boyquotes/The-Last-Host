@@ -1,0 +1,10 @@
+addons/
+.import/
+*.import
+.DS_Store
+exports/
+Exports/
+
+# Godot 4+ specific ignores
+.godot/
+

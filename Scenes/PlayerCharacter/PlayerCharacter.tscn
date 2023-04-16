@@ -1,13 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbso5w5o34udn"]
+[gd_scene load_steps=4 format=3 uid="uid://cbso5w5o34udn"]
 
 [ext_resource type="Texture2D" uid="uid://b45vjjguxj2i" path="res://Assets/Originals/Sprite/characters_concept.png" id="1_0e15e"]
+[ext_resource type="Script" path="res://Scenes/PlayerCharacter/PlayerCharacter.gd" id="1_8numc"]
 
-[node name="PlayerCharacter" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ox0bi"]
+radius = 70.0
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
+script = ExtResource("1_8numc")
+acceleration = 2400
+max_speed = 600
+friction = 1600
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -72)
+shape = SubResource("CircleShape2D_ox0bi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -88)
 texture = ExtResource("1_0e15e")
 region_enabled = true
 region_rect = Rect2(468, 227, 145, 177)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -72)
 zoom = Vector2(0.5, 0.5)

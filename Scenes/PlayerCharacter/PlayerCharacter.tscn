@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://cbso5w5o34udn"]
+[gd_scene load_steps=2 format=3 uid="uid://cbso5w5o34udn"]
+
+[ext_resource type="Texture2D" uid="uid://b45vjjguxj2i" path="res://Assets/Originals/Sprite/characters_concept.png" id="1_0e15e"]
 
 [node name="PlayerCharacter" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0e15e")
+region_enabled = true
+region_rect = Rect2(468, 227, 145, 177)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)

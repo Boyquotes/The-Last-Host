@@ -305,11 +305,6 @@ theme = ExtResource("4")
 script = ExtResource("1")
 game_scene = "res://Scenes/BaseWorld/BaseWorld.tscn"
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2kqig")
@@ -347,11 +342,13 @@ theme_override_constants/separation = 24
 
 [node name="Title" type="Label" parent="TitleContainer/Titles/TitlesContainer"]
 layout_mode = 2
-text = "Title"
+text = "The Last Host"
+horizontal_alignment = 1
 
 [node name="SubTitle" type="Label" parent="TitleContainer/Titles/TitlesContainer"]
 layout_mode = 2
-text = "Subtitle"
+text = "Godot Wild Jam #56 Edition"
+horizontal_alignment = 1
 
 [node name="VersionNameLabel" type="Label" parent="TitleContainer/Titles"]
 unique_name_in_owner = true
@@ -376,14 +373,12 @@ theme_override_constants/margin_bottom = 128
 layout_mode = 2
 
 [node name="ButtonsContainer" parent="MenuContainer/MainMenuButtons" index="0"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 192.0
-offset_bottom = 256.0
+layout_mode = 1
+anchors_preset = 8
+offset_top = -132.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MasterOptionsMenu" parent="." instance=ExtResource("3")]
 visible = false

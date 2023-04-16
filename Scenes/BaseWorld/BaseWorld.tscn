@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://b8c3jkcbcvs5k"]
+[gd_scene load_steps=3 format=3 uid="uid://b8c3jkcbcvs5k"]
 
-[node name="BaseWorld" type="Node3D"]
+[ext_resource type="PackedScene" uid="uid://cbso5w5o34udn" path="res://Scenes/PlayerCharacter/PlayerCharacter.tscn" id="1_bayas"]
+[ext_resource type="PackedScene" uid="uid://cjpv7pmyt7546" path="res://Scenes/EnemyCharacter/EnemyCharacter.tscn" id="2_r56ja"]
+
+[node name="BaseWorld" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="CharacterContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PlayerCharacter" parent="CharacterContainer" instance=ExtResource("1_bayas")]
+position = Vector2(612, 357)
+
+[node name="EnemyCharacter" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+
+[node name="EnemyCharacter2" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+position = Vector2(1411, 622)
+
+[node name="EnemyCharacter3" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+position = Vector2(282, 635)
+
+[node name="EnemyCharacter4" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+position = Vector2(988, 174)
+
+[node name="EnemyCharacter5" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+position = Vector2(-189, 421)
+
+[node name="EnemyCharacter6" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+position = Vector2(1139, 968)
+
+[node name="EnemyCharacter7" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+position = Vector2(-277, 1255)
+
+[node name="EnemyCharacter8" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+position = Vector2(688, -242)

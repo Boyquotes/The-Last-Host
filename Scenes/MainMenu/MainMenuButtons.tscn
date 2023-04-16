@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccxeuojnphgyo"]
 
-[ext_resource type="PackedScene" path="res://Scenes/UI/SoundButton/SoundButton.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://doj1dmgtf0a71" path="res://Scenes/UI/SoundButton/SoundButton.tscn" id="2"]
 
 [node name="MainMenuButtons" type="Control"]
 layout_mode = 3
@@ -21,12 +21,14 @@ offset_top = -128.0
 offset_right = 96.0
 offset_bottom = 128.0
 theme_override_constants/separation = 16
+alignment = 1
 
 [node name="PlayButton" parent="ButtonsContainer" instance=ExtResource("2")]
 layout_mode = 2
 text = "play"
 
 [node name="TutorialButton" parent="ButtonsContainer" instance=ExtResource("2")]
+visible = false
 layout_mode = 2
 text = "tutorial"
 

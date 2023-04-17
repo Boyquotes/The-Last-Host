@@ -1,11 +1,12 @@
 [gd_scene load_steps=30 format=3 uid="uid://cbso5w5o34udn"]
 
 [ext_resource type="Script" path="res://Scenes/PlayerCharacter/PlayerCharacter.gd" id="1_8numc"]
-[ext_resource type="Texture2D" uid="uid://bpjewkd2jhrgf" path="res://Assets/Originals/Sprite/alex_legs_sheet.png" id="2_wyi4t"]
+
+[ext_resource type="Texture2D" uid="uid://bnyiis5ku2qi5" path="res://Assets/Originals/Sprite/alex_legs_sheet.png" id="2_wyi4t"]
 [ext_resource type="PackedScene" uid="uid://blat6y3xgu67s" path="res://Scenes/StackedSprite/StackedSprite2D.tscn" id="3_lj23u"]
-[ext_resource type="Texture2D" uid="uid://c68fhb0j1bftc" path="res://Assets/Originals/Sprite/alex_head_sheet.png" id="4_af3j5"]
-[ext_resource type="Texture2D" uid="uid://dx0ktb4vdrbiv" path="res://Assets/Originals/Sprite/Alex_body_9.png" id="4_b3k0q"]
-[ext_resource type="Texture2D" uid="uid://hhnnkf70838h" path="res://Assets/Originals/Sprite/alex_eyes_sheet.png" id="6_lxc57"]
+[ext_resource type="Texture2D" uid="uid://dek857odtjbw2" path="res://Assets/Originals/Sprite/alex_head_sheet.png" id="4_af3j5"]
+[ext_resource type="Texture2D" uid="uid://de0rvcqscrmt4" path="res://Assets/Originals/Sprite/Alex_body_9.png" id="4_b3k0q"]
+[ext_resource type="Texture2D" uid="uid://cajc4irh5y1yi" path="res://Assets/Originals/Sprite/alex_eyes_sheet.png" id="6_lxc57"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ox0bi"]
 radius = 5.0
@@ -449,7 +450,7 @@ texture_filter = 1
 position_smoothing_speed = 20.0
 
 [node name="LegsSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 texture = ExtResource("2_wyi4t")
 hframes = 8
 
@@ -460,12 +461,12 @@ show_sprites = true
 sprite_rotation_offset = -1.56959
 
 [node name="HeadSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -13)
 texture = ExtResource("4_af3j5")
 hframes = 8
 
 [node name="EyesSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -13)
 texture = ExtResource("6_lxc57")
 hframes = 8
 

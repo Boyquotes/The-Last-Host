@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8c3jkcbcvs5k"]
+[gd_scene load_steps=4 format=3 uid="uid://b8c3jkcbcvs5k"]
 
 [ext_resource type="PackedScene" uid="uid://cbso5w5o34udn" path="res://Scenes/PlayerCharacter/PlayerCharacter.tscn" id="1_bayas"]
+[ext_resource type="Script" path="res://Scenes/BaseWorld/BaseWorld.gd" id="1_u1yl7"]
 [ext_resource type="PackedScene" uid="uid://cjpv7pmyt7546" path="res://Scenes/EnemyCharacter/EnemyCharacter.tscn" id="2_r56ja"]
 
 [node name="BaseWorld" type="Node2D"]
+script = ExtResource("1_u1yl7")
 
 [node name="TileMap" type="TileMap" parent="."]
 format = 2
@@ -12,27 +14,31 @@ format = 2
 y_sort_enabled = true
 
 [node name="PlayerCharacter" parent="CharacterContainer" instance=ExtResource("1_bayas")]
-position = Vector2(612, 357)
+position = Vector2(312, 161)
+acceleration = 1200
+max_speed = 300
+friction = 800
 
 [node name="EnemyCharacter" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
+position = Vector2(224, 143)
 
 [node name="EnemyCharacter2" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(1411, 622)
+position = Vector2(432, 74)
 
 [node name="EnemyCharacter3" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(282, 635)
+position = Vector2(330, 235)
 
 [node name="EnemyCharacter4" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(988, 174)
+position = Vector2(326, 72)
 
 [node name="EnemyCharacter5" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(-189, 421)
+position = Vector2(206, 236)
 
 [node name="EnemyCharacter6" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(1139, 968)
+position = Vector2(337, 496)
 
 [node name="EnemyCharacter7" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
 position = Vector2(-277, 1255)
 
 [node name="EnemyCharacter8" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(688, -242)
+position = Vector2(429, 162)

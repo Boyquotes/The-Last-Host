@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8c3jkcbcvs5k"]
+[gd_scene load_steps=4 format=3 uid="uid://b8c3jkcbcvs5k"]
 
 [ext_resource type="PackedScene" uid="uid://cbso5w5o34udn" path="res://Scenes/PlayerCharacter/PlayerCharacter.tscn" id="1_bayas"]
+[ext_resource type="Script" path="res://Scenes/BaseWorld/BaseWorld.gd" id="1_u1yl7"]
 [ext_resource type="PackedScene" uid="uid://cjpv7pmyt7546" path="res://Scenes/EnemyCharacter/EnemyCharacter.tscn" id="2_r56ja"]
 
 [node name="BaseWorld" type="Node2D"]
+script = ExtResource("1_u1yl7")
 
 [node name="TileMap" type="TileMap" parent="."]
 format = 2

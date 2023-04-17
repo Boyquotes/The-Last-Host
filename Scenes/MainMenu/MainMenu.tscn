@@ -303,7 +303,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4")
 script = ExtResource("1")
-game_scene = "res://Scenes/BaseWorld/BaseWorld.tscn"
+game_scene = "res://Scenes/BaseGameUI/BaseGameUI.tscn"
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

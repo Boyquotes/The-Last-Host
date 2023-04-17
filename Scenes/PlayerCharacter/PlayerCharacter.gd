@@ -1,17 +1,24 @@
 extends CharacterBody2D
 
+signal projectile_shot(projectile_velocity: Vector2)
 
-@export var acceleration = 600
-@export var max_speed = 125
-@export var friction = 600
-
+@export var acceleration : float = 600
+@export var max_speed : float = 125
+@export var friction : float = 600
+@export var cooldown : float = 1.0
+@export var projectile_speed : float = 300.0
 
 @onready var animation_tree = $CharacterAnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
 
+var is_shooting : bool = false
+var can_shoot : bool = true
+var facing_direction : Vector2
+
 func face_direction(new_direction : Vector2):
-	animation_tree.set("parameters/Idle/blend_position", new_direction.normalized())
-	$BodyStackedSprite2D.sprite_rotation = new_direction.angle()
+	facing_direction = new_direction.normalized()
+	animation_tree.set("parameters/Idle/blend_position", facing_direction)
+	$BodyStackedSprite2D.sprite_rotation = facing_direction.angle()
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -28,8 +35,15 @@ func move_state(delta):
 func move():
 	move_and_slide()
 
+func shoot():
+	if is_shooting and can_shoot:
+		emit_signal("projectile_shot", facing_direction * projectile_speed)
+		can_shoot = false
+		$CooldownTimer.start(cooldown)
+
 func _physics_process(delta):
 	move_state(delta)
+	shoot()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -37,3 +51,5 @@ func _unhandled_input(event):
 		var mouse_position = event.position - Vector2(current_window.content_scale_size / 2) 
 		face_direction(mouse_position)
 
+func _on_cooldown_timer_timeout():
+	can_shoot = true

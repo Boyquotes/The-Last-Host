@@ -7,3 +7,10 @@
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_dsbuo")
 script = ExtResource("2_t5bxb")
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

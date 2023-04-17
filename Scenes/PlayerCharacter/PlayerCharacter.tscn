@@ -437,9 +437,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
 script = ExtResource("1_8numc")
-acceleration = 1200
-max_speed = 150
-friction = 1000
+cooldown = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ox0bi")
@@ -480,3 +478,8 @@ anim_player = NodePath("../CharacterAnimationPlayer")
 active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_k1fvu")
 parameters/Idle/blend_position = Vector2(0, 0)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

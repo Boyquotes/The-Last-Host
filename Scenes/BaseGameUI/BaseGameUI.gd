@@ -16,7 +16,7 @@ func _unhandled_input(event):
 		var mouse_position = event.position - Vector2(current_window.content_scale_size / 2) 
 		base_world_node.pc_node.face_direction(mouse_position)
 	elif event is InputEventMouseButton:
-		var current_window = get_window()
-		var mouse_position = event.position - Vector2(current_window.content_scale_size / 2) 
-		base_world_node.pc_shoots_projectile(mouse_position.normalized()*300)
-		
+		if event.is_action_pressed("shoot"):
+			base_world_node.set_pc_shooting(true)
+		elif event.is_action_released("shoot"):
+			base_world_node.set_pc_shooting(false)

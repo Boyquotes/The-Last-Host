@@ -8,3 +8,6 @@ func _physics_process(delta):
 	time_since_spawn += delta
 	position += velocity * delta
 	rotation += delta * 25 
+
+func _on_kill_timer_timeout():
+	queue_free()

@@ -42,3 +42,5 @@ position = Vector2(429, 162)
 
 [node name="ProjectileContainer" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[connection signal="projectile_shot" from="CharacterContainer/PlayerCharacter" to="." method="_on_player_character_projectile_shot"]

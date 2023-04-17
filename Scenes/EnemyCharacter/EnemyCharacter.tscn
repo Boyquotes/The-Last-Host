@@ -1,11 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjpv7pmyt7546"]
+[gd_scene load_steps=4 format=3 uid="uid://cjpv7pmyt7546"]
 
-[ext_resource type="Texture2D" uid="uid://23tvsjfw562d" path="res://Assets/Originals/Sprite/characters_concept.png" id="1_j6xe7"]
+[ext_resource type="Script" path="res://Scenes/EnemyCharacter/EnemyCharacter.gd" id="1_ckq15"]
+[ext_resource type="Texture2D" uid="uid://b45vjjguxj2i" path="res://Assets/Originals/Sprite/characters_concept.png" id="1_j6xe7"]
 
-[node name="EnemyCharacter" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3s8qn"]
+
+[node name="EnemyCharacter" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 3
+script = ExtResource("1_ckq15")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_j6xe7")
 region_enabled = true
 region_rect = Rect2(379, 102, 78, 73)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3s8qn")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds01f27btv0hw"]
+
+[ext_resource type="Texture2D" uid="uid://cm33eppmwykim" path="res://Assets/Sourced/Icons/rolling-energy.png" id="1_dsbuo"]
+[ext_resource type="Script" path="res://Scenes/Projectile/Projectile.gd" id="2_t5bxb"]
+
+[node name="Projectile" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_dsbuo")
+script = ExtResource("2_t5bxb")

@@ -1,5 +1,7 @@
 extends Control
 
+@onready var base_world_node = $SubViewportContainer/SubViewport/BaseWorld
+
 var crosshair_scene = preload("res://Assets/Sourced/Icons/crosshair.png")
 
 func _on_mouse_entered():
@@ -12,4 +14,9 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		var current_window = get_window()
 		var mouse_position = event.position - Vector2(current_window.content_scale_size / 2) 
-		$SubViewportContainer/SubViewport/BaseWorld.character_node.face_direction(mouse_position)
+		base_world_node.pc_node.face_direction(mouse_position)
+	elif event is InputEventMouseButton:
+		var current_window = get_window()
+		var mouse_position = event.position - Vector2(current_window.content_scale_size / 2) 
+		base_world_node.pc_shoots_projectile(mouse_position.normalized()*300)
+		

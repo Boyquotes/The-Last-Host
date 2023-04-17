@@ -437,9 +437,9 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
 script = ExtResource("1_8numc")
-acceleration = 2400
-max_speed = 600
-friction = 1600
+acceleration = 1200
+max_speed = 150
+friction = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ox0bi")

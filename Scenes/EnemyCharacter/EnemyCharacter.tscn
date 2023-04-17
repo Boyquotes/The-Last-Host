@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3s8qn"]
 
 [node name="EnemyCharacter" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 3
 script = ExtResource("1_ckq15")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

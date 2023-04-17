@@ -1,4 +1,5 @@
 extends Node2D
+class_name World
 
 @onready var pc_node = $CharacterContainer/PlayerCharacter
 @onready var projectile_container = $ProjectileContainer
@@ -18,3 +19,7 @@ func set_pc_shooting(shooting_flag : bool = true):
 
 func _on_player_character_projectile_shot(projectile_velocity):
 	pc_shoots_projectile(projectile_velocity)
+
+	func _ready():
+		get_tree().set_group("enemies", "player_node", pc_node)
+	

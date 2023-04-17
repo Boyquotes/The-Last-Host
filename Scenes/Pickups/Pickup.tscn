@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgiujpubd1qar"]
+
+[ext_resource type="Script" path="res://Scenes/Pickups/Pickup.gd" id="1_t6s7v"]
+[ext_resource type="Texture2D" uid="uid://cijatqvdkcin7" path="res://icon.svg" id="2_mqje3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_be53y"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xddg5"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wkirr"]
+radius = 5.0
+
+[node name="Pickup" type="CharacterBody2D"]
+editor_description = "Pickup item, this characterbody node should only collide with walls and go through enemies and player (the PickedUpArea will detect when the player touched it)"
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_t6s7v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.077, 0.077)
+texture = ExtResource("2_mqje3")
+
+[node name="PickedUpArea" type="Area2D" parent="."]
+editor_description = "This area define the range where the player should be to pick up the item"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickedUpArea"]
+shape = SubResource("CircleShape2D_be53y")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="."]
+editor_description = "This area define the range at which the pickup item will start to follow the player"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
+shape = SubResource("CircleShape2D_xddg5")
+
+[node name="WallCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wkirr")
+
+[connection signal="body_entered" from="PickedUpArea" to="." method="_on_picked_up_area_body_entered"]
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]

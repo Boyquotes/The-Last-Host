@@ -449,7 +449,7 @@ texture_filter = 1
 position_smoothing_speed = 20.0
 
 [node name="LegsSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 3)
 texture = ExtResource("2_wyi4t")
 hframes = 8
 

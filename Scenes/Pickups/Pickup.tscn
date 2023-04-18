@@ -24,12 +24,16 @@ texture = ExtResource("2_mqje3")
 
 [node name="PickedUpArea" type="Area2D" parent="."]
 editor_description = "This area define the range where the player should be to pick up the item"
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickedUpArea"]
 shape = SubResource("CircleShape2D_be53y")
 
 [node name="PlayerDetectionArea" type="Area2D" parent="."]
 editor_description = "This area define the range at which the pickup item will start to follow the player"
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea"]
 shape = SubResource("CircleShape2D_xddg5")

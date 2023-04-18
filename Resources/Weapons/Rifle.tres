@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_vpuqn")
+name = "Assault Rifle"
 sprite_stack = ExtResource("2_c7fsn")
 sprite_stack_layers = 9
 weapon_offset = 10.0

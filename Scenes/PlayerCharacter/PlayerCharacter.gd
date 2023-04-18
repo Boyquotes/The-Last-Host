@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-signal projectile_shot(projectile_velocity: Vector2, projectile_vector: Vector2, projectile_damage : float)
+signal projectile_shot(projectile_position: Vector2, projectile_velocity: Vector2, projectile_damage : float)
+signal casing_dropped(casing_position : Vector2)
 
 @export var acceleration : float = 600
 @export var max_speed : float = 125
@@ -20,6 +21,8 @@ func _update_weapon_sprite():
 	var current_weapon : WeaponData = get_current_weapon()
 	$WeaponStackedSprite2D.texture = current_weapon.sprite_stack
 	$WeaponStackedSprite2D.hframes = current_weapon.sprite_stack_layers
+	$WeaponText2D/Label.text = current_weapon.name
+	$WeaponText2D/AnimationPlayer.play("FadeOut")
 
 func cycle_next():
 	current_weapon_iter += 1
@@ -45,7 +48,7 @@ func face_direction(new_direction : Vector2):
 	animation_tree.set("parameters/Idle/blend_position", facing_direction)
 	$BodyStackedSprite2D.sprite_rotation = facing_direction.angle()
 	var current_weapon : WeaponData = get_current_weapon()
-	$WeaponStackedSprite2D.position = facing_direction * current_weapon.weapon_offset
+	$WeaponStackedSprite2D.position = $BodyStackedSprite2D.position + (facing_direction * current_weapon.weapon_offset)
 	$WeaponStackedSprite2D.sprite_rotation = facing_direction.angle()
 
 func move_state(delta):
@@ -67,10 +70,13 @@ func shoot():
 	if is_shooting and can_shoot:
 		var current_weapon : WeaponData = get_current_weapon()
 		var projectile_vector = facing_direction * current_weapon.projectile_speed
-		var projectile_offset = facing_direction * (current_weapon.weapon_offset + current_weapon.barrel_offset)
-		emit_signal("projectile_shot", projectile_vector, projectile_offset, current_weapon.damage)
+		var projectile_position = position + (facing_direction * (current_weapon.weapon_offset + current_weapon.barrel_offset))
+		var casing_position = position + (facing_direction * current_weapon.weapon_offset)
+		emit_signal("projectile_shot", projectile_position, projectile_vector, current_weapon.damage)
 		can_shoot = false
 		$CooldownTimer.start(current_weapon.cooldown)
+		await get_tree().create_timer(0.0167).timeout
+		emit_signal("casing_dropped", casing_position)
 
 func _physics_process(delta):
 	move_state(delta)

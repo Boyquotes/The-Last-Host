@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_tdlss")
+name = "Sniper Rifle"
 sprite_stack = ExtResource("2_v8o36")
 sprite_stack_layers = 9
 weapon_offset = 10.0

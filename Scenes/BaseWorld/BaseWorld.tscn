@@ -45,4 +45,5 @@ y_sort_enabled = true
 
 [node name="TextContainer" type="Node2D" parent="."]
 
+[connection signal="casing_dropped" from="CharacterContainer/PlayerCharacter" to="." method="_on_player_character_casing_dropped"]
 [connection signal="projectile_shot" from="CharacterContainer/PlayerCharacter" to="." method="_on_player_character_projectile_shot"]

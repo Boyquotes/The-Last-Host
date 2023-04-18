@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cbso5w5o34udn"]
+[gd_scene load_steps=37 format=3 uid="uid://cbso5w5o34udn"]
 
 [ext_resource type="Script" path="res://Scenes/PlayerCharacter/PlayerCharacter.gd" id="1_8numc"]
 [ext_resource type="Resource" uid="uid://cwiin2tyhr8b1" path="res://Resources/Weapons/Handgun.tres" id="2_fe8vg"]
@@ -13,6 +13,43 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ox0bi"]
 radius = 5.0
+
+[sub_resource type="Animation" id="Animation_cf13y"]
+resource_name = "FadeOut"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponText2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_26r1v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponText2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4b3l"]
+_data = {
+"FadeOut": SubResource("Animation_cf13y"),
+"RESET": SubResource("Animation_26r1v")
+}
 
 [sub_resource type="Animation" id="Animation_2cac0"]
 resource_name = "FaceE"
@@ -453,32 +490,59 @@ texture_filter = 1
 position_smoothing_speed = 20.0
 
 [node name="LegsSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 9)
 texture = ExtResource("2_wyi4t")
 hframes = 8
 
 [node name="BodyStackedSprite2D" parent="." instance=ExtResource("3_lj23u")]
+position = Vector2(0, 6)
 texture = ExtResource("4_b3k0q")
 hframes = 9
 show_sprites = true
 sprite_rotation_offset = -1.56959
 
 [node name="WeaponStackedSprite2D" parent="." instance=ExtResource("3_lj23u")]
-position = Vector2(0, 10)
+position = Vector2(0, 16)
 texture = ExtResource("7_6ymqe")
 hframes = 9
 show_sprites = true
 sprite_rotation_offset = -1.56959
 
 [node name="HeadSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -13)
+position = Vector2(0, -7)
 texture = ExtResource("4_af3j5")
 hframes = 8
 
 [node name="EyesSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -13)
+position = Vector2(0, -7)
 texture = ExtResource("6_lxc57")
 hframes = 8
+
+[node name="WeaponText2D" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -26)
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="WeaponText2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -13.0
+offset_right = 82.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponText2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_m4b3l")
+}
 
 [node name="CharacterAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

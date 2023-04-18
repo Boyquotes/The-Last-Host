@@ -7,6 +7,7 @@ class_name World
 @onready var text_container = $TextContainer
 var projectile_scene = preload("res://Scenes/Projectile/Projectile.tscn")
 var muzzle_flash_scene = preload("res://Scenes/MuzzleFlash/MuzzleFlash.tscn")
+var bullet_casing_scene = preload("res://Scenes/BulletCasing/BulletCasing.tscn")
 var floating_text_scene = preload("res://Scenes/FloatingText/FloatingText2D.tscn")
 
 func spawn_projectile(projectile_position : Vector2, projectile_velocity : Vector2, team : TeamConstants.Teams, damage : float):
@@ -22,18 +23,26 @@ func spawn_muzzle_flash(flash_position : Vector2):
 	muzzle_flash_instance.position = flash_position
 	projectile_container.add_child(muzzle_flash_instance)
 
+func spawn_bullet_casing(casing_position : Vector2):
+	var bullet_casing_instance = bullet_casing_scene.instantiate()
+	bullet_casing_instance.position = casing_position
+	projectile_container.add_child(bullet_casing_instance)
+
 func spawn_floating_text(text_position : Vector2, text_value : String):
 	var floating_text_instance = floating_text_scene.instantiate()
 	floating_text_instance.position = text_position
 	floating_text_instance.text = text_value
 	text_container.add_child(floating_text_instance)
 
-func pc_shoots_projectile(projectile_velocity : Vector2, projectile_offset : Vector2, damage : float):
-	spawn_projectile(pc_node.position + projectile_offset, projectile_velocity, TeamConstants.Teams.PLAYER, damage)
-	spawn_muzzle_flash(pc_node.position + projectile_offset)
+func pc_shoots_projectile(projectile_position : Vector2, projectile_velocity : Vector2, damage : float):
+	spawn_projectile(projectile_position, projectile_velocity, TeamConstants.Teams.PLAYER, damage)
+	spawn_muzzle_flash(projectile_position)
 
-func _on_player_character_projectile_shot(projectile_velocity, projectile_offset, damage):
-	pc_shoots_projectile(projectile_velocity, projectile_offset, damage)
+func _on_player_character_projectile_shot(projectile_position: Vector2, projectile_velocity: Vector2, damage):
+	pc_shoots_projectile(projectile_position, projectile_velocity, damage)
+
+func _on_player_character_casing_dropped(casing_position):
+	spawn_bullet_casing(casing_position)
 
 func set_pc_shooting(shooting_flag : bool = true):
 	pc_node.is_shooting = shooting_flag
@@ -55,6 +64,6 @@ func _attach_enemy_signals():
 		if child.is_in_group(TeamConstants.ENEMY_GROUP):
 			if child.has_signal("damage_taken"):
 				child.damage_taken.connect(_on_enemy_damage_taken)
-		
+
 func _ready():
 	_attach_enemy_signals()

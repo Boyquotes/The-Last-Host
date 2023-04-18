@@ -1,6 +1,9 @@
 extends Node2D
 class_name World
 
+signal player_dashed(cooldown : float)
+signal player_shoot(ammo_remaining)
+
 @onready var pc_node = $CharacterContainer/PlayerCharacter
 @onready var character_container = $CharacterContainer
 @onready var projectile_container = $ProjectileContainer
@@ -37,10 +40,14 @@ func spawn_floating_text(text_position : Vector2, text_value : String):
 func pc_shoots_projectile(projectile_position : Vector2, projectile_velocity : Vector2, damage : float):
 	spawn_projectile(projectile_position, projectile_velocity, TeamConstants.Teams.PLAYER, damage)
 	spawn_muzzle_flash(projectile_position)
+	emit_signal("player_shoot", 0) # ammo not handled for now
 
 func _on_player_character_projectile_shot(projectile_position: Vector2, projectile_velocity: Vector2, damage):
 	pc_shoots_projectile(projectile_position, projectile_velocity, damage)
 
+func _on_player_character_dash(cooldown):
+	emit_signal("player_dashed", cooldown)
+	
 func _on_player_character_casing_dropped(casing_position):
 	spawn_bullet_casing(casing_position)
 
@@ -70,3 +77,5 @@ func _attach_enemy_signals():
 
 func _ready():
 	_attach_enemy_signals()
+
+

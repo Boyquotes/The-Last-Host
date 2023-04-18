@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://oahehvtdu4x0"]
+
+[ext_resource type="Script" path="res://Scenes/BaseGameUI/ammo_counter.gd" id="1_xybxf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tpxe2"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_cdtdu"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_44m3e"]
+font_size = 24
+
+[sub_resource type="Animation" id="Animation_i6mmi"]
+resource_name = "floating_ammo"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CurrentAmmoClone:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CurrentAmmoClone:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(15, -14)]
+}
+
+[sub_resource type="Animation" id="Animation_bdj0y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CurrentAmmoClone:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CurrentAmmoClone:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgfic"]
+_data = {
+"RESET": SubResource("Animation_bdj0y"),
+"floating_ammo": SubResource("Animation_i6mmi")
+}
+
+[node name="AmmoCounter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xybxf")
+
+[node name="CurrentAmmo" type="Label" parent="."]
+custom_minimum_size = Vector2(42, 37)
+layout_mode = 2
+offset_top = 1.0
+offset_right = 42.0
+offset_bottom = 38.0
+text = "250"
+label_settings = SubResource("LabelSettings_tpxe2")
+
+[node name="CurrentAmmoClone" type="Label" parent="."]
+custom_minimum_size = Vector2(42, 37)
+layout_mode = 2
+offset_top = 1.0
+offset_right = 42.0
+offset_bottom = 38.0
+text = "250"
+label_settings = SubResource("LabelSettings_tpxe2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 52.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 38.0
+text = "/"
+label_settings = SubResource("LabelSettings_cdtdu")
+
+[node name="MaxAmmo" type="Label" parent="."]
+custom_minimum_size = Vector2(42, 37)
+layout_mode = 2
+offset_left = 71.0
+offset_top = 1.0
+offset_right = 113.0
+offset_bottom = 38.0
+text = "250"
+label_settings = SubResource("LabelSettings_44m3e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bgfic")
+}

@@ -29,3 +29,11 @@ func _unhandled_input(event):
 		elif event.is_action("cycle_prev"):
 			base_world_node.set_pc_cycle_prev()
 			
+
+
+func _on_base_world_player_dashed(cooldown):
+	$DashCooldownIndicator.start(cooldown)
+
+
+func _on_base_world_player_shoot(ammo_remaining):
+	$AmmoCounter.current_ammo -= 1 # proto test until ammo count actually get handled in weapon/player

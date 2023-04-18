@@ -19,3 +19,12 @@ func set_pc_shooting(shooting_flag : bool = true):
 
 func _on_player_character_projectile_shot(projectile_velocity, projectile_offset):
 	pc_shoots_projectile(projectile_velocity, projectile_offset)
+
+func set_pc_direction(facing_direction : Vector2):
+	pc_node.face_direction(facing_direction)
+
+func set_pc_cycle_next():
+	pc_node.cycle_next()
+
+func set_pc_cycle_prev():
+	pc_node.cycle_prev()

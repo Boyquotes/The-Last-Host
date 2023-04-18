@@ -11,3 +11,4 @@ weapon_offset = 10.0
 barrel_offset = 22.0
 projectile_speed = 900.0
 cooldown = 1.0
+damage = 30

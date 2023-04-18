@@ -2,6 +2,7 @@ extends Sprite2D
 
 
 @export var team : TeamConstants.Teams
+@export var damage : float
 var velocity : Vector2
 var time_since_spawn : float = 0
 var collided_bodies : Array = []
@@ -28,4 +29,4 @@ func _on_area_2d_body_entered(body):
 		return
 	collided_bodies.append(body)
 	if body.has_method("hit"):
-		body.hit()
+		body.hit(damage)

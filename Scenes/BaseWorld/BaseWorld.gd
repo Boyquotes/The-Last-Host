@@ -8,10 +8,11 @@ class_name World
 var projectile_scene = preload("res://Scenes/Projectile/Projectile.tscn")
 var floating_text_scene = preload("res://Scenes/FloatingText/FloatingText2D.tscn")
 
-func spawn_projectile(projectile_position : Vector2, projectile_velocity : Vector2, team : TeamConstants.Teams):
+func spawn_projectile(projectile_position : Vector2, projectile_velocity : Vector2, team : TeamConstants.Teams, damage : float):
 	var projectile_instance = projectile_scene.instantiate()
 	projectile_instance.position = projectile_position
 	projectile_instance.velocity = projectile_velocity
+	projectile_instance.damage = damage
 	projectile_instance.team = team
 	projectile_container.add_child(projectile_instance)
 
@@ -21,11 +22,11 @@ func spawn_floating_text(text_position : Vector2, text_value : String):
 	floating_text_instance.text = text_value
 	text_container.add_child(floating_text_instance)
 
-func pc_shoots_projectile(projectile_velocity : Vector2, projectile_offset : Vector2):
-	spawn_projectile(pc_node.position + projectile_offset, projectile_velocity, TeamConstants.Teams.PLAYER)
+func pc_shoots_projectile(projectile_velocity : Vector2, projectile_offset : Vector2, damage : float):
+	spawn_projectile(pc_node.position + projectile_offset, projectile_velocity, TeamConstants.Teams.PLAYER, damage)
 
-func _on_player_character_projectile_shot(projectile_velocity, projectile_offset):
-	pc_shoots_projectile(projectile_velocity, projectile_offset)
+func _on_player_character_projectile_shot(projectile_velocity, projectile_offset, damage):
+	pc_shoots_projectile(projectile_velocity, projectile_offset, damage)
 
 func set_pc_shooting(shooting_flag : bool = true):
 	pc_node.is_shooting = shooting_flag

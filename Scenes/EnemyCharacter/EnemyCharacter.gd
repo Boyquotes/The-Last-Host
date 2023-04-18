@@ -15,6 +15,6 @@ func _physics_process(delta):
 	velocity = position.direction_to(player_node.position) * movement_speed
 	move_and_slide()
 
-func hit():
+func hit(damage_amount):
 	$AnimationPlayer.play("HitFlash")
-	emit_signal("damage_taken", position, 10)
+	emit_signal("damage_taken", position, damage_amount)

@@ -1,14 +1,10 @@
 extends CharacterBody2D
 
-signal projectile_shot(projectile_velocity: Vector2, projectile_vector: Vector2)
+signal projectile_shot(projectile_velocity: Vector2, projectile_vector: Vector2, projectile_damage : float)
 
 @export var acceleration : float = 600
 @export var max_speed : float = 125
 @export var friction : float = 600
-@export var cooldown : float = 1.0
-@export var projectile_speed : float = 300.0
-@export var weapon_offset : float = 10
-@export var barrel_offset : float = 10
 @export var weapons : Array[WeaponData]
 @export var current_weapon_iter : int = 0
 
@@ -72,7 +68,7 @@ func shoot():
 		var current_weapon : WeaponData = get_current_weapon()
 		var projectile_vector = facing_direction * current_weapon.projectile_speed
 		var projectile_offset = facing_direction * (current_weapon.weapon_offset + current_weapon.barrel_offset)
-		emit_signal("projectile_shot", projectile_vector, projectile_offset)
+		emit_signal("projectile_shot", projectile_vector, projectile_offset, current_weapon.damage)
 		can_shoot = false
 		$CooldownTimer.start(current_weapon.cooldown)
 

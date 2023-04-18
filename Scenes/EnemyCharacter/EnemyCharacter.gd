@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal damage_taken(current_position : Vector2, damage_amount : float)
+
 @export var movement_speed = 10
 
 var player_node : CharacterBody2D
@@ -15,3 +17,4 @@ func _physics_process(delta):
 
 func hit():
 	$AnimationPlayer.play("HitFlash")
+	emit_signal("damage_taken", position, 10)

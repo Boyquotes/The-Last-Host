@@ -1,7 +1,7 @@
 extends Sprite2D
 
 
-@export var team : GameConstants.TeamsEnum
+@export var team : TeamConstants.Teams
 var velocity : Vector2
 var time_since_spawn : float = 0
 var collided_bodies : Array = []
@@ -14,10 +14,10 @@ func _physics_process(delta):
 func _ready():
 	var layer : int
 	match(team):
-		GameConstants.TeamsEnum.PLAYER:
-			layer = GameConstants.TeamLayers.ENEMY
-		GameConstants.TeamsEnum.ENEMY:
-			layer = GameConstants.TeamLayers.PLAYER
+		TeamConstants.Teams.PLAYER:
+			layer = TeamConstants.Layers.ENEMY
+		TeamConstants.Teams.ENEMY:
+			layer = TeamConstants.Layers.PLAYER
 	$Area2D.set_collision_mask_value(layer, true)
 
 func _on_kill_timer_timeout():

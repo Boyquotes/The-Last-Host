@@ -3,6 +3,7 @@ extends Control
 @onready var base_world_node = $SubViewportContainer/SubViewport/BaseWorld
 
 var crosshair_scene = preload("res://Assets/Sourced/Icons/crosshair.png")
+var time = [0,0,0] # H,M,S
 
 func _on_mouse_entered():
 	Input.set_custom_mouse_cursor(crosshair_scene, Input.CURSOR_ARROW, Vector2(16, 16))
@@ -29,3 +30,22 @@ func _unhandled_input(event):
 		elif event.is_action("cycle_prev"):
 			base_world_node.set_pc_cycle_prev()
 			
+
+
+func _on_base_world_player_dashed(cooldown):
+	$DashCooldownIndicator.start(cooldown)
+
+
+func _on_base_world_player_shoot(ammo_remaining):
+	$AmmoCounter.current_ammo -= 1 # proto test until ammo count actually get handled in weapon/player
+
+
+func _on_timer_timeout():
+	time[2] += 1
+	if time[2] >= 60:
+		time[2] -= 60
+		time[1]+=1
+		if time[1] >= 60:
+			time[1] -= 60
+			time[0]+=1
+	$LabelTime.text = "%02d:%02d:%02d" % time

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c7i2wvfncmeuy"]
+
+[node name="Controls" type="Control"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 128.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 128.0
+color = Color(1, 1, 1, 0.207843)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 159.0
+offset_bottom = 46.0
+text = "Left Click to shoot"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 80.0
+offset_right = 164.0
+offset_bottom = 106.0
+text = "Right Click to Dash"

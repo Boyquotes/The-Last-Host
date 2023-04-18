@@ -2,11 +2,12 @@ extends CharacterBody2D
 
 signal projectile_shot(projectile_position: Vector2, projectile_velocity: Vector2, projectile_damage : float)
 signal casing_dropped(casing_position : Vector2)
+signal dash(cooldown : float)
 
 @export var acceleration : float = 600
 @export var max_speed : float = 125
 @export var friction : float = 600
-@export var dash_multiplier : float = 3
+@export var dash_speed : float = 400
 @export var weapons : Array[WeaponData]
 @export var current_weapon_iter : int = 0
 
@@ -63,9 +64,10 @@ func move_state(delta):
 	if input_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(input_vector * max_speed, acceleration * delta)
 		if is_dashing and can_dash:
-			velocity *= dash_multiplier
+			velocity = input_vector * dash_speed
 			can_dash = false
 			$DashTimer.start()
+			emit_signal("dash", $DashTimer.wait_time)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	move()

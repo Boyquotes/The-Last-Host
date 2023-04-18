@@ -1,7 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2m6vj0fmbt5e"]
+[gd_scene load_steps=9 format=3 uid="uid://b2m6vj0fmbt5e"]
 
 [ext_resource type="Script" path="res://Scenes/BaseGameUI/BaseGameUI.gd" id="1_81gpw"]
 [ext_resource type="PackedScene" uid="uid://b8c3jkcbcvs5k" path="res://Scenes/BaseWorld/BaseWorld.tscn" id="1_uiw3u"]
+[ext_resource type="PackedScene" uid="uid://erenao4flmuc" path="res://Scenes/BaseGameUI/cooldown_indcator.tscn" id="3_lg25r"]
+[ext_resource type="PackedScene" uid="uid://oahehvtdu4x0" path="res://Scenes/BaseGameUI/ammo_counter.tscn" id="4_4sfmh"]
+[ext_resource type="PackedScene" uid="uid://c7i2wvfncmeuy" path="res://Scenes/BaseGameUI/controls.tscn" id="5_5d3nm"]
+
+[sub_resource type="Animation" id="Animation_7dee6"]
+resource_name = "controls_fade_out"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(384, 236), Vector2(384, 236), Vector2(840, 236)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Controls:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 25, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vqbng"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(840, 236)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Controls:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r1bx4"]
+_data = {
+"RESET": SubResource("Animation_vqbng"),
+"controls_fade_out": SubResource("Animation_7dee6")
+}
 
 [node name="BaseGameUI" type="Control"]
 layout_mode = 3
@@ -34,5 +98,88 @@ render_target_update_mode = 4
 
 [node name="BaseWorld" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_uiw3u")]
 
+[node name="DashCooldownIndicator" parent="." instance=ExtResource("3_lg25r")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -84.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AmmoCounter" parent="." instance=ExtResource("4_4sfmh")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.945098, 0.0196078, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 47.0
+grow_horizontal = 0
+value = 80.0
+fill_mode = 1
+show_percentage = false
+
+[node name="LabelLevelCounter" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 43.0
+text = "Level 1"
+
+[node name="LabelTime" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 20.0
+offset_right = 174.0
+offset_bottom = 46.0
+text = "00:00:00"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Controls" parent="." instance=ExtResource("5_5d3nm")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -64.0
+offset_right = 72.0002
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "controls_fade_out"
+libraries = {
+"": SubResource("AnimationLibrary_r1bx4")
+}
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="player_dashed" from="SubViewportContainer/SubViewport/BaseWorld" to="." method="_on_base_world_player_dashed"]
+[connection signal="player_shoot" from="SubViewportContainer/SubViewport/BaseWorld" to="." method="_on_base_world_player_shoot"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

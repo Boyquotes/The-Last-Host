@@ -20,6 +20,10 @@ func _unhandled_input(event):
 			base_world_node.set_pc_shooting(true)
 		elif event.is_action_released("shoot"):
 			base_world_node.set_pc_shooting(false)
+		elif event.is_action_pressed("dash"):
+			base_world_node.set_pc_dashing(true)
+		elif event.is_action_released("dash"):
+			base_world_node.set_pc_dashing(false)
 		elif event.is_action("cycle_next"):
 			base_world_node.set_pc_cycle_next()
 		elif event.is_action("cycle_prev"):

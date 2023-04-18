@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://ds01f27btv0hw"]
 
-[ext_resource type="Texture2D" uid="uid://cm33eppmwykim" path="res://Assets/Sourced/Icons/rolling-energy.png" id="1_dsbuo"]
+[ext_resource type="Texture2D" uid="uid://xe8q6dq1bukp" path="res://Assets/Originals/Sprite/basic_bullet.png" id="1_70yrn"]
 [ext_resource type="Script" path="res://Scenes/Projectile/Projectile.gd" id="2_t5bxb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gk4mk"]
 
 [node name="Projectile" type="Sprite2D"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_dsbuo")
+texture = ExtResource("1_70yrn")
 script = ExtResource("2_t5bxb")
 
 [node name="KillTimer" type="Timer" parent="."]

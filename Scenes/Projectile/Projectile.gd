@@ -3,14 +3,17 @@ extends Sprite2D
 
 @export var team : TeamConstants.Teams
 @export var damage : float
-var velocity : Vector2
+var velocity : Vector2 : set = set_velocity
 var time_since_spawn : float = 0
 var collided_bodies : Array = []
+
+func set_velocity(new_velocity : Vector2):
+	velocity = new_velocity
+	rotation = new_velocity.angle()
 
 func _physics_process(delta):
 	time_since_spawn += delta
 	position += velocity * delta
-	rotation += delta * 25 
 
 func _ready():
 	var layer : int

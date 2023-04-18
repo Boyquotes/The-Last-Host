@@ -6,6 +6,7 @@ class_name World
 @onready var projectile_container = $ProjectileContainer
 @onready var text_container = $TextContainer
 var projectile_scene = preload("res://Scenes/Projectile/Projectile.tscn")
+var muzzle_flash_scene = preload("res://Scenes/MuzzleFlash/MuzzleFlash.tscn")
 var floating_text_scene = preload("res://Scenes/FloatingText/FloatingText2D.tscn")
 
 func spawn_projectile(projectile_position : Vector2, projectile_velocity : Vector2, team : TeamConstants.Teams, damage : float):
@@ -16,6 +17,11 @@ func spawn_projectile(projectile_position : Vector2, projectile_velocity : Vecto
 	projectile_instance.team = team
 	projectile_container.add_child(projectile_instance)
 
+func spawn_muzzle_flash(flash_position : Vector2):
+	var muzzle_flash_instance = muzzle_flash_scene.instantiate()
+	muzzle_flash_instance.position = flash_position
+	projectile_container.add_child(muzzle_flash_instance)
+
 func spawn_floating_text(text_position : Vector2, text_value : String):
 	var floating_text_instance = floating_text_scene.instantiate()
 	floating_text_instance.position = text_position
@@ -24,6 +30,7 @@ func spawn_floating_text(text_position : Vector2, text_value : String):
 
 func pc_shoots_projectile(projectile_velocity : Vector2, projectile_offset : Vector2, damage : float):
 	spawn_projectile(pc_node.position + projectile_offset, projectile_velocity, TeamConstants.Teams.PLAYER, damage)
+	spawn_muzzle_flash(pc_node.position + projectile_offset)
 
 func _on_player_character_projectile_shot(projectile_velocity, projectile_offset, damage):
 	pc_shoots_projectile(projectile_velocity, projectile_offset, damage)

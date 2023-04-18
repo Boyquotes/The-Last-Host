@@ -47,7 +47,7 @@ func face_direction(new_direction : Vector2):
 	animation_tree.set("parameters/Idle/blend_position", facing_direction)
 	$BodyStackedSprite2D.sprite_rotation = facing_direction.angle()
 	var current_weapon : WeaponData = get_current_weapon()
-	$WeaponStackedSprite2D.position = facing_direction * current_weapon.weapon_offset
+	$WeaponStackedSprite2D.position = $BodyStackedSprite2D.position + (facing_direction * current_weapon.weapon_offset)
 	$WeaponStackedSprite2D.sprite_rotation = facing_direction.angle()
 
 func move_state(delta):

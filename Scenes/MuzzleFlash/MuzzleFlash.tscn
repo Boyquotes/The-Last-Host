@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddql2rvk0yvj7"]
+
+[ext_resource type="Texture2D" uid="uid://bcc11yqysqsry" path="res://Assets/Originals/Sprite/mg_flash.png" id="1_lgrsn"]
+
+[sub_resource type="Animation" id="Animation_o2ka7"]
+resource_name = "Flash"
+length = 0.0875
+step = 0.0125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0125, 0.025, 0.0375, 0.05, 0.0625, 0.075),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0875),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_26456"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_arovv"]
+_data = {
+"Flash": SubResource("Animation_o2ka7"),
+"RESET": SubResource("Animation_26456")
+}
+
+[node name="MuzzleFlash" type="Sprite2D"]
+texture = ExtResource("1_lgrsn")
+hframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Flash"
+libraries = {
+"": SubResource("AnimationLibrary_arovv")
+}

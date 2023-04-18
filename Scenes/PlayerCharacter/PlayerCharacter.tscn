@@ -490,30 +490,31 @@ texture_filter = 1
 position_smoothing_speed = 20.0
 
 [node name="LegsSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 9)
 texture = ExtResource("2_wyi4t")
 hframes = 8
 
 [node name="BodyStackedSprite2D" parent="." instance=ExtResource("3_lj23u")]
+position = Vector2(0, 6)
 texture = ExtResource("4_b3k0q")
 hframes = 9
 show_sprites = true
 sprite_rotation_offset = -1.56959
 
 [node name="WeaponStackedSprite2D" parent="." instance=ExtResource("3_lj23u")]
-position = Vector2(0, 10)
+position = Vector2(0, 16)
 texture = ExtResource("7_6ymqe")
 hframes = 9
 show_sprites = true
 sprite_rotation_offset = -1.56959
 
 [node name="HeadSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -13)
+position = Vector2(0, -7)
 texture = ExtResource("4_af3j5")
 hframes = 8
 
 [node name="EyesSprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -13)
+position = Vector2(0, -7)
 texture = ExtResource("6_lxc57")
 hframes = 8
 

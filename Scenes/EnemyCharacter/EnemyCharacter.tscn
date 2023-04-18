@@ -1,12 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjpv7pmyt7546"]
+[gd_scene load_steps=7 format=3 uid="uid://cjpv7pmyt7546"]
 
 [ext_resource type="Script" path="res://Scenes/EnemyCharacter/EnemyCharacter.gd" id="1_ckq15"]
-[ext_resource type="Texture2D" uid="uid://23tvsjfw562d" path="res://Assets/Originals/Sprite/characters_concept.png" id="1_j6xe7"]
+[ext_resource type="Texture2D" uid="uid://b45vjjguxj2i" path="res://Assets/Originals/Sprite/characters_concept.png" id="1_j6xe7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3s8qn"]
 
+[sub_resource type="Animation" id="Animation_lk3yj"]
+resource_name = "HitFlash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(4, 4, 4, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nwmqg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnej7"]
+_data = {
+"HitFlash": SubResource("Animation_lk3yj"),
+"RESET": SubResource("Animation_nwmqg")
+}
+
 [node name="EnemyCharacter" type="CharacterBody2D" groups=["enemies"]]
-collision_mask = 7
+collision_layer = 9
+collision_mask = 3
 script = ExtResource("1_ckq15")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,3 +55,8 @@ region_rect = Rect2(379, 102, 78, 73)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3s8qn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rnej7")
+}

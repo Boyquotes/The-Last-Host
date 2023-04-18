@@ -104,6 +104,7 @@ cycle_prev={
 2d_physics/layer_1="entities"
 2d_physics/layer_2="walls"
 2d_physics/layer_3="player"
+2d_physics/layer_4="enemies"
 
 [rendering]
 

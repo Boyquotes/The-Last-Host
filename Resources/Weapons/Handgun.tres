@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_hg5v2")
+name = "Handcannon"
 sprite_stack = ExtResource("2_q81nm")
 sprite_stack_layers = 9
 weapon_offset = 10.0

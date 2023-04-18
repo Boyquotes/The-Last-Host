@@ -1,6 +1,7 @@
 extends Resource
 class_name WeaponData
 
+@export var name : String
 @export var sprite_stack : Texture 
 @export_range(0, 16) var sprite_stack_layers : int
 @export_range(-32, 32) var weapon_offset : float

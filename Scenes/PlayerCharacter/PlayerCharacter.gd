@@ -20,6 +20,8 @@ func _update_weapon_sprite():
 	var current_weapon : WeaponData = get_current_weapon()
 	$WeaponStackedSprite2D.texture = current_weapon.sprite_stack
 	$WeaponStackedSprite2D.hframes = current_weapon.sprite_stack_layers
+	$WeaponText2D/Label.text = current_weapon.name
+	$WeaponText2D/AnimationPlayer.play("FadeOut")
 
 func cycle_next():
 	current_weapon_iter += 1

@@ -61,6 +61,21 @@ offset_right = 60.0
 offset_bottom = -20.0
 grow_vertical = 0
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.945098, 0.0196078, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 47.0
+grow_horizontal = 0
+value = 80.0
+fill_mode = 1
+show_percentage = false
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="player_dashed" from="SubViewportContainer/SubViewport/BaseWorld" to="." method="_on_base_world_player_dashed"]

@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
-signal projectile_shot(projectile_velocity: Vector2)
+signal projectile_shot(projectile_velocity: Vector2, projectile_vector: Vector2)
 
 @export var acceleration : float = 600
 @export var max_speed : float = 125
 @export var friction : float = 600
 @export var cooldown : float = 1.0
 @export var projectile_speed : float = 300.0
+@export var weapon_offset : float = 10
+@export var barrel_offset : float = 10
 
 @onready var animation_tree = $CharacterAnimationTree
 @onready var animation_state = animation_tree.get("parameters/playback")
@@ -19,6 +21,10 @@ func face_direction(new_direction : Vector2):
 	facing_direction = new_direction.normalized()
 	animation_tree.set("parameters/Idle/blend_position", facing_direction)
 	$BodyStackedSprite2D.sprite_rotation = facing_direction.angle()
+	var weapon_position : Vector2 = Vector2.ZERO
+	weapon_position = new_direction 
+	$WeaponStackedSprite2D.position = facing_direction * weapon_offset
+	$WeaponStackedSprite2D.sprite_rotation = facing_direction.angle()
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -37,7 +43,9 @@ func move():
 
 func shoot():
 	if is_shooting and can_shoot:
-		emit_signal("projectile_shot", facing_direction * projectile_speed)
+		var projectile_vector = facing_direction * projectile_speed
+		var projectile_offset = facing_direction * (weapon_offset + barrel_offset)
+		emit_signal("projectile_shot", projectile_vector, projectile_offset)
 		can_shoot = false
 		$CooldownTimer.start(cooldown)
 

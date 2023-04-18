@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cbso5w5o34udn"]
+[gd_scene load_steps=31 format=3 uid="uid://cbso5w5o34udn"]
 
 [ext_resource type="Script" path="res://Scenes/PlayerCharacter/PlayerCharacter.gd" id="1_8numc"]
 [ext_resource type="Texture2D" uid="uid://b0vfiq1w0qkts" path="res://Assets/Originals/Sprite/alex_legs_sheet.png" id="2_wyi4t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cquohajeu50sq" path="res://Assets/Originals/Sprite/alex_head_sheet.png" id="4_af3j5"]
 [ext_resource type="Texture2D" uid="uid://bcfxlhyp5fj1r" path="res://Assets/Originals/Sprite/Alex_body_9.png" id="4_b3k0q"]
 [ext_resource type="Texture2D" uid="uid://bxed5qbba67hm" path="res://Assets/Originals/Sprite/alex_eyes_sheet.png" id="6_lxc57"]
+[ext_resource type="Texture2D" uid="uid://cjd3p2l46s12k" path="res://Assets/Originals/machine_gun_9.png" id="7_6ymqe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ox0bi"]
 radius = 5.0
@@ -455,6 +456,13 @@ hframes = 8
 
 [node name="BodyStackedSprite2D" parent="." instance=ExtResource("3_lj23u")]
 texture = ExtResource("4_b3k0q")
+hframes = 9
+show_sprites = true
+sprite_rotation_offset = -1.56959
+
+[node name="WeaponStackedSprite2D" parent="." instance=ExtResource("3_lj23u")]
+position = Vector2(0, 10)
+texture = ExtResource("7_6ymqe")
 hframes = 9
 show_sprites = true
 sprite_rotation_offset = -1.56959

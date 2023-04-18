@@ -6,6 +6,7 @@ signal casing_dropped(casing_position : Vector2)
 @export var acceleration : float = 600
 @export var max_speed : float = 125
 @export var friction : float = 600
+@export var dash_multiplier : float = 3
 @export var weapons : Array[WeaponData]
 @export var current_weapon_iter : int = 0
 
@@ -15,6 +16,8 @@ signal casing_dropped(casing_position : Vector2)
 var is_shooting : bool = false
 var can_shoot : bool = true
 var facing_direction : Vector2
+var is_dashing : bool = false
+var can_dash : bool = true
 
 
 func _update_weapon_sprite():
@@ -59,6 +62,10 @@ func move_state(delta):
 	
 	if input_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(input_vector * max_speed, acceleration * delta)
+		if is_dashing and can_dash:
+			velocity *= dash_multiplier
+			can_dash = false
+			$DashTimer.start()
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 	move()
@@ -90,3 +97,7 @@ func _unhandled_input(event):
 
 func _on_cooldown_timer_timeout():
 	can_shoot = true
+
+
+func _on_dash_timer_timeout():
+	can_dash = true

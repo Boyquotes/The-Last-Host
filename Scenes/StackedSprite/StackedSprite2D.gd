@@ -42,3 +42,7 @@ func render_sprites():
 		next_sprite.frame = i
 		next_sprite.position.y = -i * y_offset
 		add_child(next_sprite)
+
+func _on_texture_changed():
+	render_sprites()
+	set_sprite_rotation(sprite_rotation)

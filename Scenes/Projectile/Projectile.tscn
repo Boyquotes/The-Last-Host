@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds01f27btv0hw"]
+[gd_scene load_steps=4 format=3 uid="uid://ds01f27btv0hw"]
 
 [ext_resource type="Texture2D" uid="uid://cm33eppmwykim" path="res://Assets/Sourced/Icons/rolling-energy.png" id="1_dsbuo"]
 [ext_resource type="Script" path="res://Scenes/Projectile/Projectile.gd" id="2_t5bxb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gk4mk"]
 
 [node name="Projectile" type="Sprite2D"]
 scale = Vector2(0.5, 0.5)
@@ -13,4 +15,12 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gk4mk")
+
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

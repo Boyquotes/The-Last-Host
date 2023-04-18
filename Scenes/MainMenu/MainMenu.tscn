@@ -304,6 +304,7 @@ grow_vertical = 2
 theme = ExtResource("4")
 script = ExtResource("1")
 game_scene = "res://Scenes/BaseGameUI/BaseGameUI.tscn"
+version_name = "0.1.0"
 
 [node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

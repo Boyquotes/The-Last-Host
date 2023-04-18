@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://gaxplf6jy5iq"]
+
+[ext_resource type="Script" path="res://Resources/WeaponData.gd" id="1_tdlss"]
+[ext_resource type="Texture2D" uid="uid://cjd3p2l46s12k" path="res://Assets/Originals/machine_gun_9.png" id="2_v8o36"]
+
+[resource]
+script = ExtResource("1_tdlss")
+sprite_stack = ExtResource("2_v8o36")
+sprite_stack_layers = 9
+weapon_offset = 10.0
+barrel_offset = 22.0
+projectile_speed = 900.0
+cooldown = 1.0
+damage = 30

@@ -4,13 +4,18 @@ extends Control
 
 var crosshair_scene = preload("res://Assets/Sourced/Icons/crosshair.png")
 var time = [0,0,0] # H,M,S
+var can_cycle : bool = true
 
 func _on_mouse_entered():
 	Input.set_custom_mouse_cursor(crosshair_scene, Input.CURSOR_ARROW, Vector2(16, 16))
 
 func _on_mouse_exited():
 	Input.set_custom_mouse_cursor(null)
-	
+
+func _start_cycle_input_cooldown():
+	can_cycle = false
+	$CycleInputTimer.start()
+
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		var current_window = get_window()
@@ -26,9 +31,13 @@ func _unhandled_input(event):
 		elif event.is_action_released("dash"):
 			base_world_node.set_pc_dashing(false)
 		elif event.is_action("cycle_next"):
-			base_world_node.set_pc_cycle_next()
+			if can_cycle:
+				base_world_node.set_pc_cycle_next()
+				_start_cycle_input_cooldown()
 		elif event.is_action("cycle_prev"):
-			base_world_node.set_pc_cycle_prev()
+			if can_cycle:
+				base_world_node.set_pc_cycle_prev()
+				_start_cycle_input_cooldown()
 			
 
 
@@ -49,3 +58,7 @@ func _on_timer_timeout():
 			time[1] -= 60
 			time[0]+=1
 	$LabelTime.text = "%02d:%02d:%02d" % time
+
+
+func _on_cycle_input_timer_timeout():
+	can_cycle = true

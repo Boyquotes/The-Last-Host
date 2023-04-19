@@ -157,6 +157,10 @@ text = "00:00:00"
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="CycleInputTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="Controls" parent="." instance=ExtResource("5_5d3nm")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -165,10 +169,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -64.0
-offset_right = 72.0002
-offset_bottom = 64.0
+offset_left = 840.0
+offset_top = 236.0
+offset_right = 1096.0
+offset_bottom = 364.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -183,3 +187,4 @@ libraries = {
 [connection signal="player_dashed" from="SubViewportContainer/SubViewport/BaseWorld" to="." method="_on_base_world_player_dashed"]
 [connection signal="player_shoot" from="SubViewportContainer/SubViewport/BaseWorld" to="." method="_on_base_world_player_shoot"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CycleInputTimer" to="." method="_on_cycle_input_timer_timeout"]

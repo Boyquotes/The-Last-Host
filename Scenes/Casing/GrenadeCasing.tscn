@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c84bwq5wbv42r"]
+
+[ext_resource type="PackedScene" uid="uid://bmjcsiafibuym" path="res://Scenes/Casing/Casing.tscn" id="1_5s5ur"]
+[ext_resource type="Texture2D" uid="uid://bw0astjxmkxqf" path="res://Assets/Originals/Sprite/grenade_case.png" id="1_55s53"]
+
+[node name="GrenadeCasing" instance=ExtResource("1_5s5ur")]
+texture = ExtResource("1_55s53")

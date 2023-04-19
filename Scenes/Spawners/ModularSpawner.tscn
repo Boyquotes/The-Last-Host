@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://du8jomg2cob25"]
+
+[ext_resource type="Script" path="res://Scenes/Spawners/ModularSpawner.gd" id="1_du8hy"]
+
+[node name="Spawner" type="Node2D"]
+editor_description = "this spawner should act as a TimedSpawner, TriggeredGroupSpawner or TriggeredTimedSpawner if you attach a timer node, and area2D node or both"
+script = ExtResource("1_du8hy")

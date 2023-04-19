@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8c3jkcbcvs5k"]
+[gd_scene load_steps=7 format=3 uid="uid://b8c3jkcbcvs5k"]
 
 [ext_resource type="PackedScene" uid="uid://cbso5w5o34udn" path="res://Scenes/PlayerCharacter/PlayerCharacter.tscn" id="1_bayas"]
 [ext_resource type="Script" path="res://Scenes/BaseWorld/BaseWorld.gd" id="1_u1yl7"]
 [ext_resource type="PackedScene" uid="uid://cjpv7pmyt7546" path="res://Scenes/EnemyCharacter/EnemyCharacter.tscn" id="2_r56ja"]
+[ext_resource type="PackedScene" uid="uid://du8jomg2cob25" path="res://Scenes/Spawners/ModularSpawner.tscn" id="3_gq04k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6x73"]
+size = Vector2(105, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3spoj"]
+size = Vector2(80, 20)
 
 [node name="BaseWorld" type="Node2D"]
 script = ExtResource("1_u1yl7")
@@ -16,34 +23,55 @@ y_sort_enabled = true
 [node name="PlayerCharacter" parent="CharacterContainer" instance=ExtResource("1_bayas")]
 position = Vector2(312, 161)
 
-[node name="EnemyCharacter" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(224, 143)
-
-[node name="EnemyCharacter2" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(432, 74)
-
-[node name="EnemyCharacter3" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(330, 235)
-
-[node name="EnemyCharacter4" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(326, 72)
-
-[node name="EnemyCharacter5" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(206, 236)
-
-[node name="EnemyCharacter6" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(337, 496)
-
-[node name="EnemyCharacter7" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(-277, 1255)
-
-[node name="EnemyCharacter8" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(429, 162)
-
 [node name="ProjectileContainer" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="TextContainer" type="Node2D" parent="."]
+
+[node name="SpawnerContainer" type="Node2D" parent="."]
+
+[node name="Spawner" parent="SpawnerContainer" instance=ExtResource("3_gq04k")]
+position = Vector2(113, 123)
+spawn_extents = Vector2(50, 50)
+enemy_scene = ExtResource("2_r56ja")
+amount = 5
+debug_draw = true
+
+[node name="Timer" type="Timer" parent="SpawnerContainer/Spawner"]
+wait_time = 3.0
+
+[node name="Spawner2" parent="SpawnerContainer" instance=ExtResource("3_gq04k")]
+position = Vector2(372, 64)
+spawn_extents = Vector2(50, 50)
+enemy_scene = ExtResource("2_r56ja")
+amount = 5
+debug_draw = true
+
+[node name="Area2D" type="Area2D" parent="SpawnerContainer/Spawner2"]
+position = Vector2(0, 60)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerContainer/Spawner2/Area2D"]
+shape = SubResource("RectangleShape2D_l6x73")
+
+[node name="Spawner3" parent="SpawnerContainer" instance=ExtResource("3_gq04k")]
+position = Vector2(304, 288)
+spawn_extents = Vector2(50, 50)
+enemy_scene = ExtResource("2_r56ja")
+amount = 10
+debug_draw = true
+
+[node name="Timer" type="Timer" parent="SpawnerContainer/Spawner3"]
+wait_time = 0.1
+
+[node name="Area2D" type="Area2D" parent="SpawnerContainer/Spawner3"]
+position = Vector2(6, -64)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerContainer/Spawner3/Area2D"]
+shape = SubResource("RectangleShape2D_3spoj")
 
 [connection signal="casing_dropped" from="CharacterContainer/PlayerCharacter" to="." method="_on_player_character_casing_dropped"]
 [connection signal="dash" from="CharacterContainer/PlayerCharacter" to="." method="_on_player_character_dash"]

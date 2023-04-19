@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://g4hvkoo2hrps"]
+
+[ext_resource type="Script" path="res://Scenes/Spawners/Spawner.gd" id="1_gwjqb"]
+
+[node name="Spawner" type="Node2D"]
+editor_description = "base spawner, need to call spawn(amount) to spawn enemies"
+script = ExtResource("1_gwjqb")
+debug_draw = null

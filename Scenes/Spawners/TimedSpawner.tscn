@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://drx8b1ce2j23n"]
+
+[ext_resource type="PackedScene" uid="uid://g4hvkoo2hrps" path="res://Scenes/Spawners/Spawner.tscn" id="1_sqjxo"]
+[ext_resource type="Script" path="res://Scenes/Spawners/TimedSpawner.gd" id="2_urorq"]
+
+[node name="TimedSpawner" instance=ExtResource("1_sqjxo")]
+editor_description = "timed spawner, automatically spawn enemies at given time intervall"
+script = ExtResource("2_urorq")
+time = 1.0
+
+[node name="Timer" type="Timer" parent="." index="0"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

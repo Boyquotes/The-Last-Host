@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyoak4f3kterr"]
+
+[ext_resource type="PackedScene" uid="uid://g4hvkoo2hrps" path="res://Scenes/Spawners/Spawner.tscn" id="1_ufbr1"]
+[ext_resource type="Script" path="res://Scenes/Spawners/TriggeredTimedSpawner.gd" id="2_6fanb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e18u3"]
+
+[node name="TriggeredTimedSpawner" instance=ExtResource("1_ufbr1")]
+editor_description = "this spawner will start spawning enemies at a given time interval after the player entered it's area"
+script = ExtResource("2_6fanb")
+time = 1.0
+area_size = null
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_e18u3")
+
+[node name="Timer" type="Timer" parent="." index="1"]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

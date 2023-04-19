@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8c3jkcbcvs5k"]
+[gd_scene load_steps=6 format=3 uid="uid://b8c3jkcbcvs5k"]
 
 [ext_resource type="PackedScene" uid="uid://cbso5w5o34udn" path="res://Scenes/PlayerCharacter/PlayerCharacter.tscn" id="1_bayas"]
 [ext_resource type="Script" path="res://Scenes/BaseWorld/BaseWorld.gd" id="1_u1yl7"]
 [ext_resource type="PackedScene" uid="uid://cjpv7pmyt7546" path="res://Scenes/EnemyCharacter/EnemyCharacter.tscn" id="2_r56ja"]
+[ext_resource type="PackedScene" uid="uid://drx8b1ce2j23n" path="res://Scenes/Spawners/TimedSpawner.tscn" id="4_kepxa"]
+[ext_resource type="PackedScene" uid="uid://xmwvgmvcq631" path="res://Scenes/Spawners/TriggeredGroupSpawner.tscn" id="5_li88l"]
 
 [node name="BaseWorld" type="Node2D"]
 script = ExtResource("1_u1yl7")
@@ -16,35 +18,34 @@ y_sort_enabled = true
 [node name="PlayerCharacter" parent="CharacterContainer" instance=ExtResource("1_bayas")]
 position = Vector2(312, 161)
 
-[node name="EnemyCharacter" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(224, 143)
-
-[node name="EnemyCharacter2" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(432, 74)
-
-[node name="EnemyCharacter3" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(330, 235)
-
-[node name="EnemyCharacter4" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(326, 72)
-
-[node name="EnemyCharacter5" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(206, 236)
-
-[node name="EnemyCharacter6" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(337, 496)
-
-[node name="EnemyCharacter7" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(-277, 1255)
-
-[node name="EnemyCharacter8" parent="CharacterContainer" instance=ExtResource("2_r56ja")]
-position = Vector2(429, 162)
-
 [node name="ProjectileContainer" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="TextContainer" type="Node2D" parent="."]
 
+[node name="SpawnerContainer" type="Node2D" parent="."]
+
+[node name="TimedSpawner" parent="SpawnerContainer" instance=ExtResource("4_kepxa")]
+position = Vector2(107, 107)
+time = 3.0
+spawn_extents = Vector2(100, 100)
+enemy_scene = ExtResource("2_r56ja")
+amount = 10
+debug_draw = true
+
+[node name="TriggeredGroupSpawner" parent="SpawnerContainer" instance=ExtResource("5_li88l")]
+position = Vector2(487, 306)
+area_size = Vector2(80, 20)
+spawn_extents = Vector2(50, 10)
+enemy_scene = ExtResource("2_r56ja")
+amount = 15
+debug_draw = true
+
+[node name="CollisionShape2D" parent="SpawnerContainer/TriggeredGroupSpawner/Area2D" index="0"]
+position = Vector2(-6, -33)
+
 [connection signal="casing_dropped" from="CharacterContainer/PlayerCharacter" to="." method="_on_player_character_casing_dropped"]
 [connection signal="dash" from="CharacterContainer/PlayerCharacter" to="." method="_on_player_character_dash"]
 [connection signal="projectile_shot" from="CharacterContainer/PlayerCharacter" to="." method="_on_player_character_projectile_shot"]
+
+[editable path="SpawnerContainer/TriggeredGroupSpawner"]

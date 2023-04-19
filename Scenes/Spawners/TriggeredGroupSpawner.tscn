@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://xmwvgmvcq631"]
+
+[ext_resource type="PackedScene" uid="uid://g4hvkoo2hrps" path="res://Scenes/Spawners/Spawner.tscn" id="1_uqs6b"]
+[ext_resource type="Script" path="res://Scenes/Spawners/TriggeredGroupSpawner.gd" id="2_q28ff"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24ev5"]
+
+[node name="TriggeredGroupSpawner" instance=ExtResource("1_uqs6b")]
+editor_description = "this spawner will spawn a group of amount enemies when the player enter the detection area, amount must be superior to zero or noting will spawn
+"
+script = ExtResource("2_q28ff")
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_24ev5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

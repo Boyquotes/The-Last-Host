@@ -69,13 +69,23 @@ func set_pc_dashing(dashing_flag : bool):
 func _on_enemy_damage_taken(enemy_position : Vector2, damage : float):
 	spawn_floating_text(enemy_position, str(damage))
 
+func _on_spawner_spawn_enemy(node):
+	if node.is_in_group(TeamConstants.ENEMY_GROUP) and node.has_signal("damage_taken"):
+		node.damage_taken.connect(_on_enemy_damage_taken)
+	character_container.add_child(node)
+
 func _attach_enemy_signals():
 	for child in character_container.get_children():
 		if child.is_in_group(TeamConstants.ENEMY_GROUP):
 			if child.has_signal("damage_taken"):
 				child.damage_taken.connect(_on_enemy_damage_taken)
 
+func _attach_spawners_signals():
+	for child in $SpawnerContainer.get_children():
+		child.spawn_enemy.connect(_on_spawner_spawn_enemy)
+
 func _ready():
 	_attach_enemy_signals()
+	_attach_spawners_signals()
 
 

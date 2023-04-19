@@ -9,6 +9,7 @@ name = "Assault Rifle"
 sprite_stack = ExtResource("2_c7fsn")
 sprite_stack_layers = 9
 weapon_offset = 12.0
+y_offset = -1.0
 barrel_offset = 18.0
 projectile_speed = 600.0
 cooldown = 0.15

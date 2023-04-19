@@ -2,7 +2,8 @@
 extends Sprite2D
 
 @export var show_sprites : bool = false : set = set_show_sprites
-@export var y_offset : float = 1.0
+@export var y_separation : float = 1.0
+@export var y_offset : float = 0.0
 @export_range(-PI, PI) var sprite_rotation_offset : float = 0 : set = set_sprite_rotation_offset
 
 var sprite_rotation : float = 0 : set = set_sprite_rotation
@@ -40,7 +41,7 @@ func render_sprites():
 		next_sprite.texture = texture
 		next_sprite.hframes = hframes
 		next_sprite.frame = i
-		next_sprite.position.y = -i * y_offset
+		next_sprite.position.y = (-i * y_separation) + y_offset
 		add_child(next_sprite)
 
 func _on_texture_changed():

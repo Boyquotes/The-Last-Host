@@ -23,6 +23,7 @@ var can_dash : bool = true
 
 func _update_weapon_sprite():
 	var current_weapon : WeaponData = get_current_weapon()
+	$WeaponStackedSprite2D.y_offset = current_weapon.y_offset
 	$WeaponStackedSprite2D.hframes = current_weapon.sprite_stack_layers
 	$WeaponStackedSprite2D.texture = current_weapon.sprite_stack
 	$WeaponText2D/Label.text = current_weapon.name

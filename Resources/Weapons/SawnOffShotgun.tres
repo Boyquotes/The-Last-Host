@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://dywocfhl4mh6p"]
+
+[ext_resource type="Script" path="res://Resources/WeaponData.gd" id="1_ccynj"]
+[ext_resource type="Texture2D" uid="uid://dxuqjjxdx3rvn" path="res://Assets/Originals/Sprite/SawnOff_6.png" id="2_kflmi"]
+
+[resource]
+script = ExtResource("1_ccynj")
+name = "Sawn-Off"
+sprite_stack = ExtResource("2_kflmi")
+sprite_stack_layers = 6
+weapon_offset = 12.0
+barrel_offset = 12.0
+projectile_speed = 900.0
+cooldown = 1.0
+damage = 30

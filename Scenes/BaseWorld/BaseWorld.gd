@@ -8,17 +8,17 @@ signal player_shoot(ammo_remaining)
 @onready var character_container = $CharacterContainer
 @onready var projectile_container = $ProjectileContainer
 @onready var text_container = $TextContainer
-var projectile_scene = preload("res://Scenes/Projectile/Projectile.tscn")
 var muzzle_flash_scene = preload("res://Scenes/MuzzleFlash/MuzzleFlash.tscn")
-var bullet_casing_scene = preload("res://Scenes/BulletCasing/BulletCasing.tscn")
 var floating_text_scene = preload("res://Scenes/FloatingText/FloatingText2D.tscn")
 
-func spawn_projectile(projectile_position : Vector2, projectile_velocity : Vector2, team : TeamConstants.Teams, damage : float):
+func spawn_projectile(projectile_scene : PackedScene, projectile_position : Vector2, projectile_velocity : Vector2, team : TeamConstants.Teams, damage : float):
 	var projectile_instance = projectile_scene.instantiate()
 	projectile_instance.position = projectile_position
 	projectile_instance.velocity = projectile_velocity
 	projectile_instance.damage = damage
 	projectile_instance.team = team
+	if projectile_instance.has_signal("spawned_projectile"):
+		projectile_instance.spawned_projectile.connect(spawn_projectile)
 	projectile_container.add_child(projectile_instance)
 
 func spawn_muzzle_flash(flash_position : Vector2):
@@ -26,10 +26,10 @@ func spawn_muzzle_flash(flash_position : Vector2):
 	muzzle_flash_instance.position = flash_position
 	projectile_container.add_child(muzzle_flash_instance)
 
-func spawn_bullet_casing(casing_position : Vector2):
-	var bullet_casing_instance = bullet_casing_scene.instantiate()
-	bullet_casing_instance.position = casing_position
-	projectile_container.add_child(bullet_casing_instance)
+func spawn_casing(casing_scene : PackedScene, casing_position : Vector2):
+	var casing_instance = casing_scene.instantiate()
+	casing_instance.position = casing_position
+	projectile_container.add_child(casing_instance)
 
 func spawn_floating_text(text_position : Vector2, text_value : String):
 	var floating_text_instance = floating_text_scene.instantiate()
@@ -37,19 +37,19 @@ func spawn_floating_text(text_position : Vector2, text_value : String):
 	floating_text_instance.text = text_value
 	text_container.add_child(floating_text_instance)
 
-func pc_shoots_projectile(projectile_position : Vector2, projectile_velocity : Vector2, damage : float):
-	spawn_projectile(projectile_position, projectile_velocity, TeamConstants.Teams.PLAYER, damage)
+func pc_shoots_projectile(projectile_scene : PackedScene, projectile_position : Vector2, projectile_velocity : Vector2, damage : float):
+	spawn_projectile(projectile_scene, projectile_position, projectile_velocity, TeamConstants.Teams.PLAYER, damage)
 	spawn_muzzle_flash(projectile_position)
 	emit_signal("player_shoot", 0) # ammo not handled for now
 
-func _on_player_character_projectile_shot(projectile_position: Vector2, projectile_velocity: Vector2, damage):
-	pc_shoots_projectile(projectile_position, projectile_velocity, damage)
+func _on_player_character_projectile_shot(projectile_scene : PackedScene, projectile_position : Vector2, projectile_velocity : Vector2, damage : float):
+	pc_shoots_projectile(projectile_scene, projectile_position, projectile_velocity, damage)
 
 func _on_player_character_dash(cooldown):
 	emit_signal("player_dashed", cooldown)
 	
-func _on_player_character_casing_dropped(casing_position):
-	spawn_bullet_casing(casing_position)
+func _on_player_character_casing_dropped(casing_scene, casing_position):
+	spawn_casing(casing_scene, casing_position)
 
 func set_pc_shooting(shooting_flag : bool = true):
 	pc_node.is_shooting = shooting_flag

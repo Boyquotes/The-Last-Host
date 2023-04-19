@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1cnrscwif61w"]
+
+[ext_resource type="PackedScene" uid="uid://bmjcsiafibuym" path="res://Scenes/Casing/Casing.tscn" id="1_o481v"]
+
+[node name="BulletCasing" instance=ExtResource("1_o481v")]
+ground_rotation = 1.571

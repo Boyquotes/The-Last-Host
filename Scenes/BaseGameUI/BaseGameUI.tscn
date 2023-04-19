@@ -6,6 +6,33 @@
 [ext_resource type="PackedScene" uid="uid://oahehvtdu4x0" path="res://Scenes/BaseGameUI/ammo_counter.tscn" id="4_4sfmh"]
 [ext_resource type="PackedScene" uid="uid://c7i2wvfncmeuy" path="res://Scenes/BaseGameUI/controls.tscn" id="5_5d3nm"]
 
+[sub_resource type="Animation" id="Animation_vqbng"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(840, 236)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Controls:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_7dee6"]
 resource_name = "controls_fade_out"
 length = 30.0
@@ -32,33 +59,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_vqbng"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Controls:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(840, 236)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Controls:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r1bx4"]
@@ -157,6 +157,10 @@ text = "00:00:00"
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="CycleInputTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [node name="Controls" parent="." instance=ExtResource("5_5d3nm")]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -165,10 +169,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -184.0
-offset_top = -64.0
-offset_right = 72.0002
-offset_bottom = 64.0
+offset_left = 840.0
+offset_top = 236.0
+offset_right = 1096.0
+offset_bottom = 364.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -183,3 +187,4 @@ libraries = {
 [connection signal="player_dashed" from="SubViewportContainer/SubViewport/BaseWorld" to="." method="_on_base_world_player_dashed"]
 [connection signal="player_shoot" from="SubViewportContainer/SubViewport/BaseWorld" to="." method="_on_base_world_player_shoot"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CycleInputTimer" to="." method="_on_cycle_input_timer_timeout"]

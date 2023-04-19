@@ -17,6 +17,8 @@ func spawn_projectile(projectile_scene : PackedScene, projectile_position : Vect
 	projectile_instance.velocity = projectile_velocity
 	projectile_instance.damage = damage
 	projectile_instance.team = team
+	if projectile_instance.has_signal("spawned_projectile"):
+		projectile_instance.spawned_projectile.connect(spawn_projectile)
 	projectile_container.add_child(projectile_instance)
 
 func spawn_muzzle_flash(flash_position : Vector2):

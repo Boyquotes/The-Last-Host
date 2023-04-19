@@ -12,14 +12,20 @@ func _physics_process(delta):
 	position += velocity * delta
 	rotation = velocity.angle()
 
-func _ready():
+func _activate_collision_mask(layer):
+	set_collision_mask_value(layer, true)
+
+func _set_mask_layers():
 	var layer : int
 	match(team):
 		TeamConstants.Teams.PLAYER:
 			layer = TeamConstants.Layers.ENEMY
 		TeamConstants.Teams.ENEMY:
 			layer = TeamConstants.Layers.PLAYER
-	set_collision_mask_value(layer, true)
+	_activate_collision_mask(layer)
+
+func _ready():
+	_set_mask_layers()
 
 func _on_projectile_expired():
 	pass

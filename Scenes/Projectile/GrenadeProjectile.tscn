@@ -1,8 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b331prjiksf27"]
+[gd_scene load_steps=5 format=3 uid="uid://b331prjiksf27"]
 
 [ext_resource type="PackedScene" uid="uid://igq3xtj1omvs" path="res://Scenes/Projectile/RigidBodyProjectile.tscn" id="1_rslk8"]
 [ext_resource type="Script" path="res://Scenes/Projectile/GrenadeProjectile.gd" id="2_v33ao"]
+[ext_resource type="PackedScene" uid="uid://cc8ch4p6o1y3p" path="res://Scenes/Projectile/GrenadeExplosion.tscn" id="3_hujpg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxomf"]
 
 [node name="GrenadeProjectile" instance=ExtResource("1_rslk8")]
 script = ExtResource("2_v33ao")
-velocity_mod = 25.0
+explosion_scene = ExtResource("3_hujpg")
+velocity_mod = 50.0
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_fxomf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

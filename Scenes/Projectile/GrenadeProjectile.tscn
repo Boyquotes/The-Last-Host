@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b331prjiksf27"]
+
+[ext_resource type="PackedScene" uid="uid://igq3xtj1omvs" path="res://Scenes/Projectile/RigidBodyProjectile.tscn" id="1_rslk8"]
+[ext_resource type="Script" path="res://Scenes/Projectile/GrenadeProjectile.gd" id="2_v33ao"]
+
+[node name="GrenadeProjectile" instance=ExtResource("1_rslk8")]
+script = ExtResource("2_v33ao")
+velocity_mod = 25.0

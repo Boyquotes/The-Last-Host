@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://igq3xtj1omvs"]
+
+[ext_resource type="Texture2D" uid="uid://cy5n7pjkrlr67" path="res://Assets/Originals/Sprite/grenade.png" id="1_gfogb"]
+[ext_resource type="Script" path="res://Scenes/Projectile/RigidBodyProjectile.gd" id="1_mmw2m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2blfs"]
+radius = 2.0
+
+[node name="RigidBodyProjectile" type="RigidBody2D"]
+collision_mask = 0
+script = ExtResource("1_mmw2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gfogb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2blfs")
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

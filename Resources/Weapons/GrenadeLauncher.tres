@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://bu5l12djiwnel"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://bu5l12djiwnel"]
 
+[ext_resource type="PackedScene" uid="uid://c84bwq5wbv42r" path="res://Scenes/Casing/GrenadeCasing.tscn" id="1_dccmu"]
 [ext_resource type="Script" path="res://Resources/WeaponData.gd" id="1_v3qbd"]
 [ext_resource type="Texture2D" uid="uid://dmiug2ohl7dks" path="res://Assets/Originals/Sprite/Grenade_Launcher_12.png" id="2_34ahq"]
+[ext_resource type="PackedScene" uid="uid://b331prjiksf27" path="res://Scenes/Projectile/GrenadeProjectile.tscn" id="2_dk13m"]
 
 [resource]
 script = ExtResource("1_v3qbd")
@@ -9,7 +11,10 @@ name = "Grenade Launcher"
 sprite_stack = ExtResource("2_34ahq")
 sprite_stack_layers = 12
 weapon_offset = 13.0
+y_offset = 0.0
 barrel_offset = 14.0
 projectile_speed = 250.0
 cooldown = 2.0
 damage = 50
+projectile_scene = ExtResource("2_dk13m")
+casing_scene = ExtResource("1_dccmu")

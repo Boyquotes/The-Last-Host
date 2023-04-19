@@ -502,7 +502,6 @@ position = Vector2(0, 6)
 texture = ExtResource("4_b3k0q")
 hframes = 9
 show_sprites = true
-y_separation = 1.0
 sprite_rotation_offset = -1.56959
 
 [node name="WeaponStackedSprite2D" parent="." instance=ExtResource("3_lj23u")]
@@ -510,7 +509,6 @@ position = Vector2(0, 16)
 texture = ExtResource("7_6ymqe")
 hframes = 9
 show_sprites = true
-y_separation = 1.0
 sprite_rotation_offset = -1.56959
 
 [node name="HeadSprite2D" type="Sprite2D" parent="."]

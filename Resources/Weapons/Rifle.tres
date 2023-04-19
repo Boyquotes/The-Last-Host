@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://bkmliy62n7omk"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://bkmliy62n7omk"]
 
+[ext_resource type="PackedScene" uid="uid://c1cnrscwif61w" path="res://Scenes/Casing/BulletCasing.tscn" id="1_4r84e"]
 [ext_resource type="Script" path="res://Resources/WeaponData.gd" id="1_vpuqn"]
 [ext_resource type="Texture2D" uid="uid://cjd3p2l46s12k" path="res://Assets/Originals/machine_gun_9.png" id="2_c7fsn"]
+[ext_resource type="PackedScene" uid="uid://556mg5gd3b31" path="res://Scenes/Projectile/BulletProjectile.tscn" id="2_ouo2s"]
 
 [resource]
 script = ExtResource("1_vpuqn")
@@ -14,3 +16,5 @@ barrel_offset = 18.0
 projectile_speed = 600.0
 cooldown = 0.15
 damage = 3
+projectile_scene = ExtResource("2_ouo2s")
+casing_scene = ExtResource("1_4r84e")

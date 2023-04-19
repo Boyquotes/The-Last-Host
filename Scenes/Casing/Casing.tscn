@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct526lcxscdwg"]
+[gd_scene load_steps=3 format=3 uid="uid://bmjcsiafibuym"]
 
 [ext_resource type="Texture2D" uid="uid://ctjqspc0pw76" path="res://Assets/Originals/Sprite/bullet_casing.png" id="1_ha1h5"]
-[ext_resource type="Script" path="res://Scenes/BulletCasing/BulletCasing.gd" id="2_hc7s8"]
+[ext_resource type="Script" path="res://Scenes/Casing/Casing.gd" id="2_hc7s8"]
 
-[node name="BulletCasing" type="Sprite2D"]
+[node name="Casing" type="Sprite2D"]
 texture = ExtResource("1_ha1h5")
 script = ExtResource("2_hc7s8")
 initial_velocity = Vector2(0, -2)

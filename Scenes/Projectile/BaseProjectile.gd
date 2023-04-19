@@ -1,19 +1,16 @@
-extends Sprite2D
-
+extends Area2D
+class_name BaseProjectile
 
 @export var team : TeamConstants.Teams
 @export var damage : float
-var velocity : Vector2 : set = set_velocity
+var velocity : Vector2
 var time_since_spawn : float = 0
 var collided_bodies : Array = []
-
-func set_velocity(new_velocity : Vector2):
-	velocity = new_velocity
-	rotation = new_velocity.angle()
 
 func _physics_process(delta):
 	time_since_spawn += delta
 	position += velocity * delta
+	rotation = velocity.angle()
 
 func _ready():
 	var layer : int
@@ -22,14 +19,22 @@ func _ready():
 			layer = TeamConstants.Layers.ENEMY
 		TeamConstants.Teams.ENEMY:
 			layer = TeamConstants.Layers.PLAYER
-	$Area2D.set_collision_mask_value(layer, true)
+	set_collision_mask_value(layer, true)
+
+func _on_projectile_expired():
+	pass
 
 func _on_kill_timer_timeout():
-	queue_free()
+	_on_projectile_expired()
 
-func _on_area_2d_body_entered(body):
-	if body in collided_bodies:
+func _on_new_body_collided(_body_node):
+	pass
+
+func _on_body_collided(body_node):
+	if body_node in collided_bodies:
 		return
-	collided_bodies.append(body)
-	if body.has_method("hit"):
-		body.hit(damage)
+	collided_bodies.append(body_node)
+	_on_new_body_collided(body_node)
+
+func _on_body_entered(body):
+	_on_body_collided(body)

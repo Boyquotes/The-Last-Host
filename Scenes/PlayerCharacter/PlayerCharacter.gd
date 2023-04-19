@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-signal projectile_shot(projectile_position: Vector2, projectile_velocity: Vector2, projectile_damage : float)
-signal casing_dropped(casing_position : Vector2)
+signal projectile_shot(projectile_scene : PackedScene, projectile_position: Vector2, projectile_velocity: Vector2, projectile_damage : float)
+signal casing_dropped(casing_scene : PackedScene, casing_position : Vector2)
 signal dash(cooldown : float)
 
 @export var acceleration : float = 600
@@ -19,7 +19,6 @@ var can_shoot : bool = true
 var facing_direction : Vector2
 var is_dashing : bool = false
 var can_dash : bool = true
-
 
 func _update_weapon_sprite():
 	var current_weapon : WeaponData = get_current_weapon()
@@ -83,11 +82,11 @@ func shoot():
 		var projectile_vector = facing_direction * current_weapon.projectile_speed
 		var projectile_position = position + (facing_direction * (current_weapon.weapon_offset + current_weapon.barrel_offset))
 		var casing_position = position + (facing_direction * current_weapon.weapon_offset)
-		emit_signal("projectile_shot", projectile_position, projectile_vector, current_weapon.damage)
+		emit_signal("projectile_shot", current_weapon.projectile_scene, projectile_position, projectile_vector, current_weapon.damage)
 		can_shoot = false
 		$CooldownTimer.start(current_weapon.cooldown)
 		await get_tree().create_timer(0.0167).timeout
-		emit_signal("casing_dropped", casing_position)
+		emit_signal("casing_dropped", current_weapon.casing_scene, casing_position)
 
 func _physics_process(delta):
 	move_state(delta)

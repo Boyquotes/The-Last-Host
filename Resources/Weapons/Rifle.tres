@@ -29,6 +29,6 @@ y_offset = -1.0
 barrel_offset = 16.0
 projectile_speed = 600.0
 cooldown = 1.0
-damage = 3
+damage = 5
 casing_scene = ExtResource("1_4r84e")
 shots = Array[ExtResource("5_dlpjv")]([ExtResource("4_c28qe"), SubResource("Resource_in6s0"), SubResource("Resource_jh77w")])

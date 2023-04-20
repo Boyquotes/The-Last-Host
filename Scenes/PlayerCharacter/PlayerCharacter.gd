@@ -80,9 +80,8 @@ func shoot():
 	if is_shooting and can_shoot:
 		var current_weapon : WeaponData = get_current_weapon()
 		var projectile_vector = facing_direction * current_weapon.projectile_speed
-		var projectile_position = position + (facing_direction * (current_weapon.weapon_offset + current_weapon.barrel_offset))
 		var casing_position = position + (facing_direction * current_weapon.weapon_offset)
-		emit_signal("projectile_shot", current_weapon.projectile_scene, projectile_position, projectile_vector, current_weapon.damage)
+		$WeaponShot.shoot(current_weapon.shots)
 		can_shoot = false
 		$CooldownTimer.start(current_weapon.cooldown)
 		await get_tree().create_timer(0.0167).timeout
@@ -101,6 +100,11 @@ func _unhandled_input(event):
 func _on_cooldown_timer_timeout():
 	can_shoot = true
 
-
 func _on_dash_timer_timeout():
 	can_dash = true
+
+func _on_weapon_shot_projectile_shot(projectile_scene, angle_offset):
+	var current_weapon : WeaponData = get_current_weapon()
+	var projectile_vector = (facing_direction * current_weapon.projectile_speed).rotated(angle_offset)
+	var projectile_position = position + (facing_direction * (current_weapon.weapon_offset + current_weapon.barrel_offset))
+	emit_signal("projectile_shot", projectile_scene, projectile_position, projectile_vector, current_weapon.damage)

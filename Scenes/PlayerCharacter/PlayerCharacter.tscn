@@ -1,17 +1,18 @@
-[gd_scene load_steps=39 format=3 uid="uid://cbso5w5o34udn"]
+[gd_scene load_steps=40 format=3 uid="uid://hji8le5si4gx"]
 
 [ext_resource type="Script" path="res://Scenes/PlayerCharacter/PlayerCharacter.gd" id="1_8numc"]
-[ext_resource type="Resource" uid="uid://cwiin2tyhr8b1" path="res://Resources/Weapons/Handgun.tres" id="2_fe8vg"]
-[ext_resource type="Texture2D" uid="uid://bpjewkd2jhrgf" path="res://Assets/Originals/Sprite/alex_legs_sheet.png" id="2_wyi4t"]
+[ext_resource type="Resource" uid="uid://0ubbegprkhdp" path="res://Resources/Weapons/Handcannon.tres" id="2_vwjhq"]
+[ext_resource type="Texture2D" uid="uid://b0vfiq1w0qkts" path="res://Assets/Originals/Sprite/alex_legs_sheet.png" id="2_wyi4t"]
 [ext_resource type="Resource" uid="uid://dywocfhl4mh6p" path="res://Resources/Weapons/SawnOffShotgun.tres" id="3_2mlrx"]
 [ext_resource type="PackedScene" uid="uid://blat6y3xgu67s" path="res://Scenes/StackedSprite/StackedSprite2D.tscn" id="3_lj23u"]
-[ext_resource type="Resource" uid="uid://bkmliy62n7omk" path="res://Resources/Weapons/Rifle.tres" id="3_ng35h"]
-[ext_resource type="Texture2D" uid="uid://c68fhb0j1bftc" path="res://Assets/Originals/Sprite/alex_head_sheet.png" id="4_af3j5"]
-[ext_resource type="Texture2D" uid="uid://dx0ktb4vdrbiv" path="res://Assets/Originals/Sprite/Alex_body_9.png" id="4_b3k0q"]
-[ext_resource type="Resource" uid="uid://gaxplf6jy5iq" path="res://Resources/Weapons/SniperRifle.tres" id="4_ud1sb"]
+[ext_resource type="Resource" uid="uid://djuphlvsh1v71" path="res://Resources/Weapons/Rifle.tres" id="3_ng35h"]
+[ext_resource type="Texture2D" uid="uid://cquohajeu50sq" path="res://Assets/Originals/Sprite/alex_head_sheet.png" id="4_af3j5"]
+[ext_resource type="Texture2D" uid="uid://bcfxlhyp5fj1r" path="res://Assets/Originals/Sprite/Alex_body_9.png" id="4_b3k0q"]
+[ext_resource type="Resource" uid="uid://khgrgseocoeh" path="res://Resources/Weapons/SniperRifle.tres" id="4_ud1sb"]
 [ext_resource type="Resource" uid="uid://bu5l12djiwnel" path="res://Resources/Weapons/GrenadeLauncher.tres" id="5_akdp2"]
-[ext_resource type="Texture2D" uid="uid://hhnnkf70838h" path="res://Assets/Originals/Sprite/alex_eyes_sheet.png" id="6_lxc57"]
-[ext_resource type="Texture2D" uid="uid://dfd227d52pvjx" path="res://Assets/Originals/machine_gun_9.png" id="7_6ymqe"]
+[ext_resource type="Texture2D" uid="uid://bxed5qbba67hm" path="res://Assets/Originals/Sprite/alex_eyes_sheet.png" id="6_lxc57"]
+[ext_resource type="Texture2D" uid="uid://llqy01mj2xr8" path="res://Assets/Originals/Sprite/Hand_Cannon_7.png" id="10_kyaup"]
+[ext_resource type="PackedScene" uid="uid://c6dniymj4n4q3" path="res://Scenes/WeaponShot/WeaponShot.tscn" id="11_grgfw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ox0bi"]
 radius = 5.0
@@ -483,7 +484,7 @@ collision_layer = 5
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_8numc")
-weapons = Array[Resource("res://Resources/WeaponData.gd")]([ExtResource("2_fe8vg"), ExtResource("3_2mlrx"), ExtResource("3_ng35h"), ExtResource("4_ud1sb"), ExtResource("5_akdp2")])
+weapons = Array[Resource("res://Resources/WeaponData.gd")]([ExtResource("2_vwjhq"), ExtResource("3_2mlrx"), ExtResource("3_ng35h"), ExtResource("4_ud1sb"), ExtResource("5_akdp2")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ox0bi")
@@ -506,10 +507,13 @@ sprite_rotation_offset = -1.56959
 
 [node name="WeaponStackedSprite2D" parent="." instance=ExtResource("3_lj23u")]
 position = Vector2(0, 16)
-texture = ExtResource("7_6ymqe")
-hframes = 9
+texture = ExtResource("10_kyaup")
+hframes = 7
 show_sprites = true
-sprite_rotation_offset = -1.56959
+y_offset = -3.0
+sprite_rotation_offset = -1.57059
+
+[node name="WeaponShot" parent="." instance=ExtResource("11_grgfw")]
 
 [node name="HeadSprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
@@ -566,5 +570,6 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[connection signal="projectile_shot" from="WeaponShot" to="." method="_on_weapon_shot_projectile_shot"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

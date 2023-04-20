@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShotData" load_steps=3 format=3 uid="uid://knhhd188k6hs"]
+
+[ext_resource type="Script" path="res://Resources/ShotData.gd" id="1_h87xl"]
+[ext_resource type="PackedScene" uid="uid://556mg5gd3b31" path="res://Scenes/Projectile/BulletProjectile.tscn" id="1_n3de2"]
+
+[resource]
+script = ExtResource("1_h87xl")
+projectile_scene = ExtResource("1_n3de2")
+angle_offset = 0.0
+time_offset = 0.0

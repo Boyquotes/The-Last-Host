@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://0ubbegprkhdp"]
+
+[ext_resource type="PackedScene" uid="uid://c1cnrscwif61w" path="res://Scenes/Casing/BulletCasing.tscn" id="1_ivtwd"]
+[ext_resource type="Script" path="res://Resources/WeaponData.gd" id="3_16e47"]
+[ext_resource type="Texture2D" uid="uid://llqy01mj2xr8" path="res://Assets/Originals/Sprite/Hand_Cannon_7.png" id="4_48ki0"]
+[ext_resource type="Resource" uid="uid://knhhd188k6hs" path="res://Resources/Shots/BulletStraightInstant.tres" id="4_n7nl7"]
+
+[resource]
+script = ExtResource("3_16e47")
+name = "Handcannon"
+sprite_stack = ExtResource("4_48ki0")
+sprite_stack_layers = 7
+weapon_offset = 14.0
+y_offset = -3.0
+barrel_offset = 12.0
+projectile_speed = 300.0
+cooldown = 0.6
+damage = 10
+casing_scene = ExtResource("1_ivtwd")
+shots = Array[Resource("res://Resources/ShotData.gd")]([ExtResource("4_n7nl7")])

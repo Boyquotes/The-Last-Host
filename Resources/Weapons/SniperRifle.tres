@@ -1,20 +1,20 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://gaxplf6jy5iq"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://khgrgseocoeh"]
 
 [ext_resource type="PackedScene" uid="uid://c1cnrscwif61w" path="res://Scenes/Casing/BulletCasing.tscn" id="1_etg7c"]
 [ext_resource type="Script" path="res://Resources/WeaponData.gd" id="1_tdlss"]
-[ext_resource type="PackedScene" uid="uid://556mg5gd3b31" path="res://Scenes/Projectile/BulletProjectile.tscn" id="2_gotku"]
-[ext_resource type="Texture2D" uid="uid://cjd3p2l46s12k" path="res://Assets/Originals/machine_gun_9.png" id="2_v8o36"]
+[ext_resource type="Resource" uid="uid://knhhd188k6hs" path="res://Resources/Shots/BulletStraightInstant.tres" id="4_mf3ua"]
+[ext_resource type="Texture2D" uid="uid://c7o76hufcvd4a" path="res://Assets/Originals/Sprite/Sniper_12.png" id="4_vhojf"]
 
 [resource]
 script = ExtResource("1_tdlss")
 name = "Sniper Rifle"
-sprite_stack = ExtResource("2_v8o36")
-sprite_stack_layers = 9
-weapon_offset = 12.0
-y_offset = -1.0
-barrel_offset = 18.0
+sprite_stack = ExtResource("4_vhojf")
+sprite_stack_layers = 12
+weapon_offset = 28.0
+y_offset = 0.0
+barrel_offset = 14.0
 projectile_speed = 900.0
 cooldown = 1.0
 damage = 30
-projectile_scene = ExtResource("2_gotku")
 casing_scene = ExtResource("1_etg7c")
+shots = Array[Resource("res://Resources/ShotData.gd")]([ExtResource("4_mf3ua")])

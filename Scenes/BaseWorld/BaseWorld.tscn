@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8c3jkcbcvs5k"]
 
-[ext_resource type="PackedScene" uid="uid://cbso5w5o34udn" path="res://Scenes/PlayerCharacter/PlayerCharacter.tscn" id="1_bayas"]
+[ext_resource type="PackedScene" uid="uid://hji8le5si4gx" path="res://Scenes/PlayerCharacter/PlayerCharacter.tscn" id="1_bayas"]
 [ext_resource type="Script" path="res://Scenes/BaseWorld/BaseWorld.gd" id="1_u1yl7"]
 [ext_resource type="PackedScene" uid="uid://cjpv7pmyt7546" path="res://Scenes/EnemyCharacter/EnemyCharacter.tscn" id="2_r56ja"]
 [ext_resource type="PackedScene" uid="uid://du8jomg2cob25" path="res://Scenes/Spawners/ModularSpawner.tscn" id="3_gq04k"]

@@ -1,5 +1,5 @@
 extends Node2D
-class_name GameWorld
+class_name BaseWorld
 
 signal player_dashed(cooldown : float)
 signal player_shoot(ammo_remaining)

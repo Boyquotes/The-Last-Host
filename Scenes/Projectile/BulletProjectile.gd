@@ -1,4 +1,4 @@
-extends BaseGameProjectile
+extends BaseProjectile
 
 func _on_projectile_expired():
 	queue_free()

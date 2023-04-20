@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=6 format=3 uid="uid://khgrgseocoeh"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://khgrgseocoeh"]
 
 [ext_resource type="PackedScene" uid="uid://c1cnrscwif61w" path="res://Scenes/Casing/BulletCasing.tscn" id="1_etg7c"]
 [ext_resource type="Script" path="res://Resources/WeaponData.gd" id="1_tdlss"]
-[ext_resource type="PackedScene" uid="uid://556mg5gd3b31" path="res://Scenes/Projectile/BulletProjectile.tscn" id="2_gotku"]
 [ext_resource type="Resource" uid="uid://knhhd188k6hs" path="res://Resources/Shots/BulletStraightInstant.tres" id="4_mf3ua"]
 [ext_resource type="Texture2D" uid="uid://c7o76hufcvd4a" path="res://Assets/Originals/Sprite/Sniper_12.png" id="4_vhojf"]
 

@@ -1,14 +1,11 @@
 extends Node2D
 
-signal projectile_shot(projectile_scene : PackedScene, projectile_velocity: Vector2, projectile_damage : float)
+signal projectile_shot(projectile_scene : PackedScene, angle_offset: float)
 
-@export var shots : Array[ShotData]
+func _shoot_angled_shot(shot_data : ShotData):
+	emit_signal("projectile_shot", shot_data.projectile_scene, shot_data.angle_offset)
 
-func _shoot_angled_shot(shot_data : ShotData, projectile_velocity: Vector2, projectile_damage : float):
-	var angled_projectile_velocity = projectile_velocity.rotated(shot_data.angle_offset)
-	emit_signal("projectile_shot", shot_data.projectile_scene, angled_projectile_velocity, projectile_damage)
-
-func _shoot_single_shot(shot_data : ShotData, projectile_velocity: Vector2, projectile_damage : float):
+func _shoot_single_shot(shot_data : ShotData):
 	var timer_node
 	if shot_data.time_offset > 0:
 		timer_node = Timer.new()
@@ -16,8 +13,8 @@ func _shoot_single_shot(shot_data : ShotData, projectile_velocity: Vector2, proj
 		timer_node.start(shot_data.time_offset)
 		await timer_node.timeout
 		timer_node.queue_free()
-	_shoot_angled_shot(shot_data, projectile_velocity, projectile_damage)
+	_shoot_angled_shot(shot_data)
 
-func shoot(projectile_velocity: Vector2, projectile_damage : float):
+func shoot(shots):
 	for shot_data in shots:
-		_shoot_single_shot(shot_data, projectile_velocity, projectile_damage)
+		_shoot_single_shot(shot_data)

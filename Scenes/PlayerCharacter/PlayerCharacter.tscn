@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://hji8le5si4gx"]
+[gd_scene load_steps=40 format=3 uid="uid://hji8le5si4gx"]
 
 [ext_resource type="Script" path="res://Scenes/PlayerCharacter/PlayerCharacter.gd" id="1_8numc"]
 [ext_resource type="Resource" uid="uid://0ubbegprkhdp" path="res://Resources/Weapons/Handcannon.tres" id="2_vwjhq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://bu5l12djiwnel" path="res://Resources/Weapons/GrenadeLauncher.tres" id="5_akdp2"]
 [ext_resource type="Texture2D" uid="uid://bxed5qbba67hm" path="res://Assets/Originals/Sprite/alex_eyes_sheet.png" id="6_lxc57"]
 [ext_resource type="Texture2D" uid="uid://llqy01mj2xr8" path="res://Assets/Originals/Sprite/Hand_Cannon_7.png" id="10_kyaup"]
+[ext_resource type="PackedScene" uid="uid://c6dniymj4n4q3" path="res://Scenes/WeaponShot/WeaponShot.tscn" id="11_grgfw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ox0bi"]
 radius = 5.0
@@ -512,6 +513,8 @@ show_sprites = true
 y_offset = -3.0
 sprite_rotation_offset = -1.57059
 
+[node name="WeaponShot" parent="." instance=ExtResource("11_grgfw")]
+
 [node name="HeadSprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
 texture = ExtResource("4_af3j5")
@@ -567,5 +570,6 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[connection signal="projectile_shot" from="WeaponShot" to="." method="_on_weapon_shot_projectile_shot"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

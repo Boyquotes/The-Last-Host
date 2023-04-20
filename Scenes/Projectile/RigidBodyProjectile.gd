@@ -1,5 +1,5 @@
 extends RigidBody2D
-class_name RigidBodyProjectile
+class_name RigidBodyGameProjectile
 
 @export var team : TeamConstants.Teams
 @export var damage : float

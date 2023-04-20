@@ -1,5 +1,5 @@
 extends Area2D
-class_name BaseProjectile
+class_name BaseGameProjectile
 
 @export var team : TeamConstants.Teams
 @export var damage : float

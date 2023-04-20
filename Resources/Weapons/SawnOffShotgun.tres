@@ -1,9 +1,34 @@
-[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3 uid="uid://dywocfhl4mh6p"]
+[gd_resource type="Resource" script_class="WeaponData" load_steps=10 format=3 uid="uid://dywocfhl4mh6p"]
 
 [ext_resource type="Script" path="res://Resources/WeaponData.gd" id="1_ccynj"]
 [ext_resource type="PackedScene" uid="uid://dxlkajgtpgl7g" path="res://Scenes/Casing/ShellCasing.tscn" id="1_yiii1"]
 [ext_resource type="Texture2D" uid="uid://dxuqjjxdx3rvn" path="res://Assets/Originals/Sprite/SawnOff_6.png" id="2_kflmi"]
 [ext_resource type="PackedScene" uid="uid://556mg5gd3b31" path="res://Scenes/Projectile/BulletProjectile.tscn" id="2_x4cs0"]
+[ext_resource type="Script" path="res://Resources/ShotData.gd" id="4_fr83r"]
+
+[sub_resource type="Resource" id="Resource_bv0n5"]
+script = ExtResource("4_fr83r")
+projectile_scene = ExtResource("2_x4cs0")
+angle_offset = 0.098
+time_offset = 0.0
+
+[sub_resource type="Resource" id="Resource_6awug"]
+script = ExtResource("4_fr83r")
+projectile_scene = ExtResource("2_x4cs0")
+angle_offset = 0.294
+time_offset = 0.0
+
+[sub_resource type="Resource" id="Resource_mkybn"]
+script = ExtResource("4_fr83r")
+projectile_scene = ExtResource("2_x4cs0")
+angle_offset = -0.098
+time_offset = 0.0
+
+[sub_resource type="Resource" id="Resource_8r2n2"]
+script = ExtResource("4_fr83r")
+projectile_scene = ExtResource("2_x4cs0")
+angle_offset = -0.294
+time_offset = 0.0
 
 [resource]
 script = ExtResource("1_ccynj")
@@ -16,5 +41,5 @@ barrel_offset = 10.0
 projectile_speed = 900.0
 cooldown = 1.0
 damage = 30
-projectile_scene = ExtResource("2_x4cs0")
 casing_scene = ExtResource("1_yiii1")
+shots = Array[ExtResource("4_fr83r")]([SubResource("Resource_bv0n5"), SubResource("Resource_6awug"), SubResource("Resource_mkybn"), SubResource("Resource_8r2n2")])

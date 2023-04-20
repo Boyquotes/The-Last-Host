@@ -1,4 +1,4 @@
-extends RigidBodyProjectile
+extends RigidBodyGameProjectile
 
 signal spawned_projectile(projectile_scene : PackedScene, projectile_position : Vector2, projectile_velocity : Vector2, team : TeamConstants.Teams, damage : float)
 
